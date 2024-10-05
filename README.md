@@ -1,2 +1,3 @@
 # ltrl
-🍱 Compose literally-typed constants, enums, &amp; options from JSON.
+
+🍱 Compose literally-typed constants, enums, & options from JSON.
