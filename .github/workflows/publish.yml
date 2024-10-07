@@ -20,7 +20,7 @@ jobs:
       - run: pnpm i
       - run: pnpm lint
       - run: pnpm typecheck
-      # - run: pnpm test
+      - run: pnpm test
       - run: pnpm build
       - run: pnpm publish --no-git-checks
         env:

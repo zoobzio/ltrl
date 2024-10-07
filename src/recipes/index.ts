@@ -1,4 +1,4 @@
 export * from "./constant";
 export * from "./enum";
-export * from "./option";
+export * from "./tuple";
 export * from "./keylabel";
