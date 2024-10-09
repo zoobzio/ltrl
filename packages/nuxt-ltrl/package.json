@@ -1,13 +1,12 @@
 {
-  "name": "@ltrl/monorepo",
+  "name": "nuxt-ltrl",
   "version": "0.0.3",
-  "author": {
-    "name": "Alex Thorwaldson",
-    "email": "alex@zoobz.io",
-    "url": "https://zoobz.io"
-  },
+  "description": "🍱 Compose literally-typed constants, tuples, enums, & more from standard JSON in Nuxt.",
+  "author": "Alexander Thorwaldson <alex@zoobz.io>",
   "license": "MIT",
-  "private": true,
+  "keywords": [
+    "nuxt"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zoobzio/ltrl.git"
@@ -15,26 +14,46 @@
   "bugs": {
     "url": "https://github.com/zoobzio/ltrl/issues"
   },
+  "exports": {
+    ".": {
+      "types": "./.dist/module.d.ts",
+      "import": "./.dist/module.mjs"
+    }
+  },
+  "sideEffects": false,
+  "module": ".dist/module.mjs",
+  "types": ".dist/module.d.ts",
+  "files": [
+    ".dist",
+    "runtime"
+  ],
   "scripts": {
     "lint": "eslint .",
-    "typecheck": "tsc --outDir .dist",
-    "test": "vitest",
-    "coverage": "pnpm -r --filter=./packages/** run coverage",
-    "build": "pnpm -r --filter=./packages/** run build",
+    "typecheck": "nuxi typecheck",
+    "prepare": "nuxt prepare",
+    "build": "unbuild .",
+    "stub": "unbuild . --stub",
     "release": "changelogen --release && git push --follow-tags"
   },
   "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
+  "dependencies": {
+    "@nuxt/kit": "catalog:",
+    "@nuxt/schema": "catalog:",
+    "ltrl": "workspace:*"
+  },
   "devDependencies": {
     "@eslint/js": "catalog:",
+    "@nuxt/eslint-config": "catalog:",
     "@types/node": "catalog:",
     "@vitest/coverage-istanbul": "catalog:",
     "changelogen": "catalog:",
     "eslint-config-prettier": "catalog:",
     "eslint-plugin-prettier": "catalog:",
     "istanbul": "catalog:",
+    "nuxt": "catalog:",
     "typescript": "catalog:",
     "typescript-eslint": "catalog:",
     "unbuild": "catalog:",

@@ -1,0 +1,20 @@
+packages:
+  - packages/ltrl
+  - packages/nuxt-ltrl
+  - examples/nuxt
+catalog:
+  "@nuxt/kit": ^3.13.2
+  "@nuxt/schema": ^3.13.2
+  "@nuxt/eslint-config": ^0.5.7
+  "@eslint/js": ^9.10.0
+  "@types/node": ^22.5.5
+  "@vitest/coverage-istanbul": ^2.1.2
+  changelogen: ^0.5.5
+  eslint-config-prettier: ^9.1.0
+  eslint-plugin-prettier: ^5.2.1
+  istanbul: ^0.4.5
+  nuxt: ^3.13.2
+  typescript: 5.5.4
+  typescript-eslint: ^8.6.0
+  unbuild: ^2.0.0
+  vitest: ^2.1.2
