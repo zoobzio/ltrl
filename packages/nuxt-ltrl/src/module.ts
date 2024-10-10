@@ -30,8 +30,8 @@ export default defineNuxtModule<LtrlConfigTemplate>({
         write: true,
         getContents: () =>
           [
-            "import { defineLtrl } from 'ltrl';",
-            `export const nuxtLtrl = defineLtrl(${configString});`,
+            "import { defineLtrlConfig } from 'ltrl';",
+            `export const nuxtLtrl = defineLtrlConfig(${configString});`,
           ].join("\n"),
       });
 

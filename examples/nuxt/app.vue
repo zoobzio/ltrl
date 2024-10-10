@@ -1,11 +1,9 @@
 <script setup lang="ts">
-const { data: variants } = await useAsyncData("variants", () =>
-  $fetch("/api/variants"),
-);
+const variants = useNuxtLtrl("buttonVariants");
 </script>
 
 <template>
   <div>
-    <Button v-for="v in variants" :variant="v" />
+    <Button v-for="v in variants.value" :variant="v" />
   </div>
 </template>
