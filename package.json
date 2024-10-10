@@ -16,8 +16,8 @@
     "url": "https://github.com/zoobzio/ltrl/issues"
   },
   "scripts": {
-    "lint": "pnpm -r --filter:./packages/** run lint",
-    "typecheck": "pnpm -r --filter:./packages/** run typecheck",
+    "lint": "pnpm -r --filter=./packages/** run lint",
+    "typecheck": "pnpm -r --filter=./packages/** run typecheck",
     "test": "pnpm -r --filter=./packages/** run test run",
     "coverage": "pnpm -r --filter=./packages/** run coverage",
     "build": "pnpm -r --filter=./packages/** run build",

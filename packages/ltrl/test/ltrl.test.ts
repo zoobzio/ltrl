@@ -124,7 +124,7 @@ describe("ltrl", () => {
   it("throws an error w/ invalid ltrl", () => {
     try {
       // @ts-expect-error testing for errors
-      const t = ltrl(_INVALID);
+      ltrl(_INVALID);
     } catch (err) {
       expect(err).toBeInstanceOf(Error);
     }
