@@ -47,4 +47,15 @@ describe("ltrl tuple utils", () => {
     _STRING_TUPLE.forEach((o) => expect(_STRING_UTILS.eval(o)).toBe(true));
     _NUMBER_TUPLE.forEach((o) => expect(_NUMBER_UTILS.eval(o)).toBe(true));
   });
+
+  it("clones a tuple", () => {
+    const stringClone = _STRING_UTILS.clone();
+    const numberClone = _NUMBER_UTILS.clone();
+
+    expect(stringClone).toStrictEqual(_STRING_TUPLE);
+    expect(numberClone).toStrictEqual(_NUMBER_TUPLE);
+
+    expect(Object.isFrozen(stringClone)).toBe(false);
+    expect(Object.isFrozen(numberClone)).toBe(false);
+  });
 });

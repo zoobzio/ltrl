@@ -1,24 +1,19 @@
 import { describe, it, expect } from "vitest";
-import { defineLtrlConfig, isLtrlConfig, ltrl } from "../src/ltrl";
+import { ltrl } from "../src";
 
-const _LTRL = {
-  string: "banana",
-  number: 777,
-  boolean: false,
-  stringTuple: ["a", "b", "c"],
-  numberTuple: [1, 2, 3, 4],
-  stringEnum: {
-    a: "A",
-    b: "B",
-    c: "C",
-  },
-  numberEnum: {
-    one: 1,
-    two: 2,
-    three: 3,
-    four: 4,
-  },
-  stringKeyLabel: [
+const _CONSTANT = "banana";
+
+const _TUPLE = [1, 2, 3, 4];
+
+const _ENUM = {
+  a: "A",
+  b: "B",
+  c: "C",
+};
+
+const _CONGRUENT = {
+  schema: "stringKeyLabel" as const,
+  records: [
     {
       key: "a",
       label: "A",
@@ -27,92 +22,111 @@ const _LTRL = {
       key: "b",
       label: "B",
     },
-  ],
-  numberKeyLabel: [
     {
-      key: 1,
-      label: "ONE",
-    },
-    {
-      key: 2,
-      label: "TWO",
-    },
-    {
-      key: 3,
-      label: "THREE",
+      key: "c",
+      label: "C",
     },
   ],
 };
 
-const _INVALID_LTRL = {
-  stringTuple: ["a", 3, "c"],
-  numberTuple: [1, "four", 3, 4],
-  stringEnum: {
-    a: "A",
-    b: "B",
-    c: 13,
-  },
-  numberEnum: {
-    one: 1,
-    two: "Two",
-    three: 3,
-    four: "Four",
-  },
+const _CONFIG = {
+  example: _CONSTANT,
+  numbers: _TUPLE,
+  letters: _ENUM,
+  options: _CONGRUENT,
 };
 
-describe("ltrl typeguard", () => {
-  it("determines if a value satisfies the ltrl template", () => {
-    expect(isLtrlConfig(_LTRL)).toBe(true);
+const _INVALID = ["a", 2, { foo: false }];
+
+function testLtrlConstant(
+  item: typeof _CONSTANT extends string
+    ? string
+    : typeof _CONSTANT extends number
+      ? number
+      : typeof _CONSTANT extends boolean
+        ? boolean
+        : never,
+) {
+  const ltrlConstant = ltrl(item);
+
+  expect(ltrlConstant.value).toStrictEqual(_CONSTANT);
+  expect(Object.isFrozen(ltrlConstant.value)).toBe(true);
+
+  expect(ltrlConstant.clone()).toStrictEqual(_CONSTANT);
+
+  expect(ltrlConstant.eval(_CONSTANT)).toBe(true);
+}
+
+function testLtrlTuple(item: typeof _TUPLE) {
+  const ltrlTuple = ltrl(item);
+
+  expect(ltrlTuple.value).toStrictEqual(_TUPLE);
+  expect(Object.isFrozen(ltrlTuple.value)).toBe(true);
+
+  expect(ltrlTuple.clone()).toStrictEqual(_TUPLE);
+
+  _TUPLE.forEach((t) => expect(ltrlTuple.eval(t)).toBe(true));
+}
+
+function testLtrlEnum(item: typeof _ENUM) {
+  const ltrlEnum = ltrl(item);
+
+  expect(ltrlEnum.value).toStrictEqual(_ENUM);
+  expect(Object.isFrozen(ltrlEnum.value)).toBe(true);
+
+  expect(ltrlEnum.keys()).toStrictEqual(Object.keys(_ENUM));
+
+  ltrlEnum.keys().forEach((k) => {
+    expect(ltrlEnum.eval(k, _ENUM[k])).toBe(true);
+    expect(ltrlEnum.resolve(k)).toStrictEqual(_ENUM[k]);
   });
-});
 
-describe("ltrl config", () => {
-  const _LTRL_LTRL = defineLtrlConfig(_LTRL);
+  Object.keys(_ENUM).forEach((k) => expect(ltrlEnum.evalKey(k)).toBe(true));
 
-  it("defines a readonly literal config", () => {
-    expect(_LTRL_LTRL).toStrictEqual(_LTRL);
-    expect(Object.isFrozen(_LTRL_LTRL)).toBe(true);
+  expect(ltrlEnum.clone()).toStrictEqual(_ENUM);
+}
+
+function testLtrlCongruent(item: typeof _CONGRUENT) {
+  const ltrlCongruent = ltrl(item);
+
+  expect(ltrlCongruent.value).toStrictEqual(_CONGRUENT.records);
+  expect(Object.isFrozen(ltrlCongruent.value)).toBe(true);
+
+  expect(ltrlCongruent.keys()).toStrictEqual(
+    _CONGRUENT.records.map((c) => c.key),
+  );
+
+  ltrlCongruent.keys().forEach((k, i) => {
+    expect(ltrlCongruent.eval(_CONGRUENT.records[i])).toBe(true);
+    expect(ltrlCongruent.resolve(k)).toStrictEqual(_CONGRUENT.records[i]);
   });
 
-  it("throws an error w/ invalid config", () => {
+  _CONGRUENT.records
+    .map((c) => c.key)
+    .forEach((k) => expect(ltrlCongruent.evalKey(k)).toBe(true));
+
+  expect(ltrlCongruent.clone()).toStrictEqual(_CONGRUENT.records);
+}
+
+describe("ltrl", () => {
+  it("creates a 'constant' ltrl", () => testLtrlConstant(_CONSTANT));
+  it("creates a 'tuple' ltrl", () => testLtrlTuple(_TUPLE));
+  it("creates a 'enum' ltrl", () => testLtrlEnum(_ENUM));
+  it("creates a 'congruent' ltrl", () => testLtrlCongruent(_CONGRUENT));
+
+  it("creates a 'config' ltrl", () => {
+    testLtrlConstant(_CONFIG.example);
+    testLtrlTuple(_CONFIG.numbers);
+    testLtrlEnum(_CONFIG.letters);
+    testLtrlCongruent(_CONFIG.options);
+  });
+
+  it("throws an error w/ invalid ltrl", () => {
     try {
-      // @ts-expect-error testing invalid configuration
-      defineLtrlConfig(_INVALID_LTRL);
+      // @ts-expect-error testing for errors
+      const t = ltrl(_INVALID);
     } catch (err) {
       expect(err).toBeInstanceOf(Error);
     }
-  });
-});
-
-describe("ltrl utils", () => {
-  const _LTRL_UTILS = ltrl(_LTRL);
-  const properties = {
-    constant: ["value", "eval"],
-    tuple: ["value", "eval"],
-    enum: ["value", "keys", "eval", "evalKey", "resolve"],
-    keylabel: ["value", "keys", "eval", "evalKey", "resolve"],
-  };
-
-  it("applies ltrl recipe based on type", () => {
-    expect(Object.keys(_LTRL_UTILS.string)).toStrictEqual(properties.constant);
-    expect(Object.keys(_LTRL_UTILS.number)).toStrictEqual(properties.constant);
-    expect(Object.keys(_LTRL_UTILS.boolean)).toStrictEqual(properties.constant);
-
-    expect(Object.keys(_LTRL_UTILS.stringTuple)).toStrictEqual(
-      properties.tuple,
-    );
-    expect(Object.keys(_LTRL_UTILS.numberTuple)).toStrictEqual(
-      properties.tuple,
-    );
-
-    expect(Object.keys(_LTRL_UTILS.stringEnum)).toStrictEqual(properties.enum);
-    expect(Object.keys(_LTRL_UTILS.numberEnum)).toStrictEqual(properties.enum);
-
-    expect(Object.keys(_LTRL_UTILS.stringKeyLabel)).toStrictEqual(
-      properties.keylabel,
-    );
-    expect(Object.keys(_LTRL_UTILS.numberKeyLabel)).toStrictEqual(
-      properties.keylabel,
-    );
   });
 });

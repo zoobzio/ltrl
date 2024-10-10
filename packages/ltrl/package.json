@@ -10,7 +10,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zoobzio/ltrl.git"
+    "url": "git+https://github.com/zoobzio/ltrl.git",
+    "directory": "packages/ltrl"
   },
   "bugs": {
     "url": "https://github.com/zoobzio/ltrl/issues"
@@ -44,11 +45,10 @@
   "devDependencies": {
     "@eslint/js": "catalog:",
     "@types/node": "catalog:",
-    "@vitest/coverage-istanbul": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
     "changelogen": "catalog:",
     "eslint-config-prettier": "catalog:",
     "eslint-plugin-prettier": "catalog:",
-    "istanbul": "catalog:",
     "typescript": "catalog:",
     "typescript-eslint": "catalog:",
     "unbuild": "catalog:",

@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "ltrl": "workspace: *",
+    "ltrl": "workspace:*",
     "nuxt": "catalog:",
     "nuxt-ltrl": "workspace:*",
     "vue": "latest",

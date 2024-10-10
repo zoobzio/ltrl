@@ -57,11 +57,11 @@ describe("ltrl enum utils", () => {
   });
 
   it("provides a list of enum keys", () => {
-    _STRING_UTILS.keys.forEach((k) => {
+    _STRING_UTILS.keys().forEach((k) => {
       expect(k in _STRING_ENUM).toBe(true);
       expect(_STRING_ENUM[k]).toEqual(_STRING_UTILS.resolve(k));
     });
-    _NUMBER_UTILS.keys.forEach((k) => {
+    _NUMBER_UTILS.keys().forEach((k) => {
       expect(k in _NUMBER_ENUM).toBe(true);
       expect(_NUMBER_ENUM[k]).toEqual(_NUMBER_UTILS.resolve(k));
     });
@@ -77,20 +77,39 @@ describe("ltrl enum utils", () => {
   });
 
   it("evaluates a potential enum value", () => {
-    _STRING_UTILS.keys.forEach((k) =>
-      expect(_STRING_UTILS.eval(k, _STRING_ENUM[k])).toBe(true),
-    );
-    _NUMBER_UTILS.keys.forEach((k) =>
-      expect(_NUMBER_UTILS.eval(k, _NUMBER_ENUM[k])).toBe(true),
-    );
+    _STRING_UTILS
+      .keys()
+      .forEach((k) =>
+        expect(_STRING_UTILS.eval(k, _STRING_ENUM[k])).toBe(true),
+      );
+    _NUMBER_UTILS
+      .keys()
+      .forEach((k) =>
+        expect(_NUMBER_UTILS.eval(k, _NUMBER_ENUM[k])).toBe(true),
+      );
+  });
+
+  it("clones an enum", () => {
+    const stringClone = _STRING_UTILS.clone();
+    const numberClone = _NUMBER_UTILS.clone();
+
+    expect(stringClone).toStrictEqual(_STRING_ENUM);
+    expect(numberClone).toStrictEqual(_NUMBER_ENUM);
+
+    expect(Object.isFrozen(stringClone)).toBe(false);
+    expect(Object.isFrozen(numberClone)).toBe(false);
   });
 
   it("resolves a given enum key", () => {
-    _STRING_UTILS.keys.forEach((k) =>
-      expect(_STRING_UTILS.resolve(k)).toEqual(_STRING_ENUM[k]),
-    );
-    _NUMBER_UTILS.keys.forEach((k) =>
-      expect(_NUMBER_UTILS.resolve(k)).toEqual(_NUMBER_ENUM[k]),
-    );
+    _STRING_UTILS
+      .keys()
+      .forEach((k) =>
+        expect(_STRING_UTILS.resolve(k)).toEqual(_STRING_ENUM[k]),
+      );
+    _NUMBER_UTILS
+      .keys()
+      .forEach((k) =>
+        expect(_NUMBER_UTILS.resolve(k)).toEqual(_NUMBER_ENUM[k]),
+      );
   });
 });

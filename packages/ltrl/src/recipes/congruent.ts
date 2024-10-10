@@ -1,3 +1,4 @@
+import type { UnionToTuple } from "../types";
 import type { LtrlConstantTemplate } from "./constant";
 
 export type LtrlCongruentTemplate =
@@ -17,7 +18,7 @@ export type LtrlCongruentFactory = {
     key: string;
     label: string;
   };
-  numKeyLabel: {
+  numberKeyLabel: {
     key: number;
     label: string;
   };
@@ -28,11 +29,6 @@ export type LtrlCongruentSchema =
   | LtrlCongruentTemplate
   | keyof LtrlCongruentFactory;
 
-export type LtrlCongruentBlueprint = {
-  schema: LtrlCongruentSchema;
-  records: LtrlCongruentTemplate[];
-};
-
 export type LtrlCongruent<S extends LtrlCongruentSchema> =
   S extends keyof LtrlCongruentFactory
     ? {
@@ -41,6 +37,19 @@ export type LtrlCongruent<S extends LtrlCongruentSchema> =
     : {
         [Key in keyof S]: S[Key];
       };
+
+export type LtrlCongruentBlueprintTemplate = {
+  schema: LtrlCongruentSchema;
+  records: LtrlCongruentTemplate[];
+};
+
+export type LtrlCongruentBlueprint<
+  S extends LtrlCongruentSchema,
+  R extends LtrlCongruent<S>[],
+> = {
+  schema: S;
+  records: R;
+};
 
 export type LtrlCongruentFromKey<
   R extends LtrlCongruentTemplate[],
@@ -62,31 +71,38 @@ export type LtrlCongruentUtils<
   R extends LtrlCongruent<S>[],
 > = {
   value: R;
-  keys: R[number]["key"][]; // TODO can this be a tuple type?
+  keys: () => UnionToTuple<R[number]["key"]>;
   eval: (val: unknown) => val is R[number];
   evalKey: (key: LtrlCongruentTemplate["key"]) => key is R[number]["key"];
+  clone: () => LtrlCongruentTemplate[];
   resolve: <K extends R[number]["key"]>(key: K) => LtrlCongruentFromKey<R, K>;
 };
 
 export const isLtrlCongruent = (
   value: unknown,
-): value is LtrlCongruentBlueprint =>
+): value is LtrlCongruentBlueprintTemplate =>
   value !== null &&
   typeof value === "object" &&
   "schema" in value &&
+  (typeof value.schema === "string" || typeof value.schema === "object") &&
   "records" in value &&
   Array.isArray(value.records) &&
-  value.records.every(
-    (v) =>
-      typeof v === "object" &&
-      "key" in v &&
-      Object.entries(v).every(
-        (e) =>
-          value.schema !== null &&
-          typeof value.schema === "object" &&
-          e[0] in value.schema,
-      ),
-  );
+  value.records.length > 0 &&
+  value.records.every((v) => typeof v === "object" && "key" in v) &&
+  value.records.reduce((x, y, i) => {
+    if (!x) {
+      return x;
+    }
+    const keys = Object.keys(y);
+    if (
+      (value.records as object[])
+        .slice(i + 1)
+        .some((r) => !keys.every((k) => k in r))
+    ) {
+      x = false;
+    }
+    return x;
+  }, true);
 
 export function defineLtrlCongruent<
   S extends LtrlCongruentSchema,
@@ -98,7 +114,7 @@ export function defineLtrlCongruent<
       cause: template,
     });
   }
-  Object.freeze(config);
+  Object.freeze(config.records);
   return config;
 }
 
@@ -112,7 +128,8 @@ export const useLtrlCongruent = <
   const value = defineLtrlCongruent(config);
   return {
     value: value.records,
-    keys: value.records.map(({ key }) => key),
+    keys: () =>
+      value.records.map(({ key }) => key) as UnionToTuple<R[number]["key"]>,
     eval: (item): item is (typeof value.records)[number] =>
       item !== null &&
       typeof item === "object" &&
@@ -120,6 +137,7 @@ export const useLtrlCongruent = <
       value.records.findIndex((v) => v.key === item.key) >= 0,
     evalKey: (key): key is (typeof value.records)[number]["key"] =>
       value.records.map(({ key }) => String(key)).includes(String(key)),
+    clone: () => JSON.parse(JSON.stringify(value.records)),
     resolve: (key) =>
       value.records.find((v) => v.key === key) as LtrlCongruentFromKey<
         typeof value.records,

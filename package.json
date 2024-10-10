@@ -16,28 +16,12 @@
     "url": "https://github.com/zoobzio/ltrl/issues"
   },
   "scripts": {
-    "lint": "eslint .",
-    "typecheck": "tsc --outDir .dist",
-    "test": "vitest",
+    "lint": "pnpm -r --filter:./packages/** run lint",
+    "typecheck": "pnpm -r --filter:./packages/** run typecheck",
+    "test": "pnpm -r --filter=./packages/** run test run",
     "coverage": "pnpm -r --filter=./packages/** run coverage",
     "build": "pnpm -r --filter=./packages/** run build",
-    "release": "changelogen --release && git push --follow-tags"
+    "release": "pnpm -r --filter=./packages/** run release"
   },
-  "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org"
-  },
-  "devDependencies": {
-    "@eslint/js": "catalog:",
-    "@types/node": "catalog:",
-    "@vitest/coverage-istanbul": "catalog:",
-    "changelogen": "catalog:",
-    "eslint-config-prettier": "catalog:",
-    "eslint-plugin-prettier": "catalog:",
-    "istanbul": "catalog:",
-    "typescript": "catalog:",
-    "typescript-eslint": "catalog:",
-    "unbuild": "catalog:",
-    "vitest": "catalog:"
-  }
+  "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c"
 }

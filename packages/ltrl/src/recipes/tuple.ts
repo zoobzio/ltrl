@@ -1,12 +1,13 @@
 export type LtrlTupleTemplate = string[] | number[];
 
-export type LtrlTupleClone<T extends LtrlTupleTemplate> = T extends string[]
-  ? string[]
-  : number[];
-
 export type LtrlTupleUtils<O extends LtrlTupleTemplate> = {
   value: O;
   eval: (item: LtrlTupleTemplate[number]) => item is O[number];
+  clone: () => O extends string[]
+    ? string[]
+    : O extends number[]
+      ? number[]
+      : never;
 };
 
 export const isLtrlTuple = (value: unknown): value is LtrlTupleTemplate =>
@@ -38,5 +39,6 @@ export const useLtrlTuple = <const O extends LtrlTupleTemplate>(
     eval: (key: unknown): key is (typeof value)[number] =>
       value.every((v) => typeof v === typeof key) &&
       value.map(String).includes(String(key)),
+    clone: () => JSON.parse(JSON.stringify([...value])),
   };
 };

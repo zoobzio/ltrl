@@ -26,9 +26,6 @@ describe("ltrl constant config", () => {
     expect(_STRING_LTRL).toStrictEqual(_STRING_CONSTANT);
     expect(_NUMBER_LTRL).toStrictEqual(_NUMBER_CONSTANT);
     expect(_BOOLEAN_LTRL).toStrictEqual(_BOOLEAN_CONSTANT);
-    expect(Object.isFrozen(_STRING_LTRL)).toBe(true);
-    expect(Object.isFrozen(_NUMBER_LTRL)).toBe(true);
-    expect(Object.isFrozen(_BOOLEAN_LTRL)).toBe(true);
   });
 
   it("throws an error w/ invalid config", () => {
@@ -56,5 +53,11 @@ describe("ltrl constant utils", () => {
     expect(_STRING_UTILS.eval(_STRING_CONSTANT)).toBe(true);
     expect(_NUMBER_UTILS.eval(_NUMBER_CONSTANT)).toBe(true);
     expect(_BOOLEAN_UTILS.eval(_BOOLEAN_CONSTANT)).toBe(true);
+  });
+
+  it("clones a constant", () => {
+    expect(_STRING_UTILS.clone()).toEqual(_STRING_CONSTANT);
+    expect(_NUMBER_UTILS.clone()).toEqual(_NUMBER_CONSTANT);
+    expect(_BOOLEAN_UTILS.clone()).toEqual(_BOOLEAN_CONSTANT);
   });
 });
