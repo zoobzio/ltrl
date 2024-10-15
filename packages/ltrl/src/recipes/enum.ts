@@ -1,4 +1,4 @@
-import { UnionToTuple } from "../types";
+import { LtrlUnionToTuple } from "../types";
 
 export type LtrlEnumTemplate =
   | {
@@ -10,7 +10,7 @@ export type LtrlEnumTemplate =
 
 export type LtrlEnumUtils<E extends LtrlEnumTemplate> = {
   value: E;
-  keys: () => UnionToTuple<keyof E>;
+  keys: () => LtrlUnionToTuple<keyof E>;
   eval: (key: keyof E, value: unknown) => value is E[typeof key];
   evalKey: (key: string) => key is keyof E & string;
   clone: () => E extends { [key: string]: string }
@@ -28,24 +28,13 @@ export const isLtrlEnum = (value: unknown): value is LtrlEnumTemplate =>
   (Object.values(value).every((v) => typeof v === "string") ||
     Object.values(value).every((v) => typeof v === "number"));
 
-export const defineLtrlEnum = <const E extends LtrlEnumTemplate>(config: E) => {
-  const template = config;
-  if (!isLtrlEnum(template)) {
-    throw new Error("Invalid ltrl enum", {
-      cause: template,
-    });
-  }
-  Object.freeze(config);
-  return config;
-};
-
 export const useLtrlEnum = <const E extends LtrlEnumTemplate>(
-  config: E,
+  value: E,
 ): LtrlEnumUtils<E> => {
-  const value = defineLtrlEnum(config);
+  Object.freeze(value);
   return {
     value,
-    keys: () => Object.keys(value) as UnionToTuple<keyof E>,
+    keys: () => Object.keys(value) as LtrlUnionToTuple<keyof E>,
     eval: (key, val): val is (typeof value)[typeof key] => value[key] === val,
     evalKey: (key): key is keyof typeof value & string => key in value,
     clone: () => JSON.parse(JSON.stringify(value)),

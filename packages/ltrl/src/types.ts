@@ -1,12 +1,12 @@
-export type UnionToIntersection<U> = (
+export type LtrlUnionToIntersection<U> = (
   U extends never ? never : (arg: U) => never
 ) extends (arg: infer I) => void
   ? I
   : never;
 
-export type UnionToTuple<T> =
-  UnionToIntersection<T extends never ? never : (t: T) => T> extends (
+export type LtrlUnionToTuple<T> =
+  LtrlUnionToIntersection<T extends never ? never : (t: T) => T> extends (
     _: never,
   ) => infer W
-    ? [...UnionToTuple<Exclude<T, W>>, W]
+    ? [...LtrlUnionToTuple<Exclude<T, W>>, W]
     : [];

@@ -1,13 +1,13 @@
 export type LtrlConstantTemplate = string | number | boolean;
 
-export type LtrlConstantUtils<C extends LtrlConstantTemplate> = {
-  value: C;
-  eval: (item: LtrlConstantTemplate) => item is C;
-  clone: () => C extends string
+export type LtrlConstantUtils<T extends LtrlConstantTemplate> = {
+  value: T;
+  eval: (item: LtrlConstantTemplate) => item is T;
+  clone: () => T extends string
     ? string
-    : C extends number
+    : T extends number
       ? number
-      : C extends boolean
+      : T extends boolean
         ? boolean
         : never;
 };
@@ -19,23 +19,10 @@ export const isLtrlConstant = (value: unknown): value is LtrlConstantTemplate =>
   typeof value !== "object" &&
   ["string", "number", "boolean"].includes(typeof value);
 
-export const defineLtrlConstant = <const C extends LtrlConstantTemplate>(
-  config: C,
-) => {
-  const template = config;
-  if (!isLtrlConstant(template)) {
-    throw new Error("Invalid ltrl constant", {
-      cause: template,
-    });
-  }
-  Object.freeze(config);
-  return config;
-};
-
-export const useLtrlConstant = <const C extends LtrlConstantTemplate>(
-  config: C,
-): LtrlConstantUtils<C> => {
-  const value = defineLtrlConstant(config);
+export const useLtrlConstant = <const T extends LtrlConstantTemplate>(
+  value: T,
+): LtrlConstantUtils<T> => {
+  Object.freeze(value);
   return {
     value,
     eval: (item: LtrlConstantTemplate): item is typeof value => value === item,

@@ -1,24 +1,68 @@
-import type { LtrlRecipeUtils, LtrlRecipeTemplate } from "./recipes";
-import type { LtrlConfigTemplate, LtrlConfigUtils } from "./config";
-import { isLtrlRecipe, useLtrlRecipe } from "./recipes";
-import { isLtrlConfig, useLtrlConfig } from "./config";
+import type {
+  LtrlConstantTemplate,
+  LtrlConstantUtils,
+  LtrlTupleTemplate,
+  LtrlTupleUtils,
+  LtrlEnumTemplate,
+  LtrlEnumUtils,
+  LtrlCongruentTemplate,
+  LtrlCongruent,
+  LtrlCongruentUtils,
+  LtrlConfigTemplate,
+  LtrlConfigUtils,
+  LtrlConfig,
+} from "./recipes";
+import {
+  useLtrlConstant,
+  isLtrlConstant,
+  isLtrlTuple,
+  useLtrlTuple,
+  isLtrlEnum,
+  useLtrlEnum,
+  isLtrlCongruent,
+  useLtrlCongruent,
+  isLtrlConfig,
+  useLtrlConfig,
+} from "./recipes";
 
-export type LtrlTemplate = LtrlConfigTemplate | LtrlRecipeTemplate;
+export function ltrl<const T extends LtrlConfigTemplate>(
+  template: LtrlConfig<T>,
+): LtrlConfigUtils<T>;
 
-export type LtrlReturn<L> = L extends LtrlConfigTemplate[string]
-  ? LtrlRecipeUtils<L>
-  : L extends LtrlConfigTemplate
-    ? LtrlConfigUtils<L>
-    : never;
+export function ltrl<
+  const T extends LtrlCongruentTemplate,
+  const R extends LtrlCongruent<T>[],
+>(template: [T, ...R]): LtrlCongruentUtils<T, R>;
 
-export const ltrl = <const L extends LtrlTemplate>(value: L): LtrlReturn<L> => {
-  if (isLtrlRecipe(value)) {
-    return useLtrlRecipe(value) as LtrlReturn<L>;
+export function ltrl<const T extends LtrlEnumTemplate>(
+  template: T,
+): LtrlEnumUtils<T>;
+
+export function ltrl<const T extends LtrlTupleTemplate>(
+  template: T,
+): LtrlTupleUtils<T>;
+
+export function ltrl<const T extends LtrlConstantTemplate>(
+  template: T,
+): LtrlConstantUtils<T>;
+
+export function ltrl<const T>(template: T) {
+  if (isLtrlConstant(template)) {
+    return useLtrlConstant(template);
   }
-  if (isLtrlConfig(value)) {
-    return useLtrlConfig(value) as LtrlReturn<L>;
+  if (isLtrlTuple(template)) {
+    return useLtrlTuple(template);
   }
-  throw new Error("Invalid ltrl!", {
-    cause: value,
+  if (isLtrlEnum(template)) {
+    return useLtrlEnum(template);
+  }
+  if (isLtrlCongruent(template)) {
+    return useLtrlCongruent(template);
+  }
+  if (isLtrlConfig(template)) {
+    return useLtrlConfig(template);
+  }
+  throw new Error("Invalid ltrl template!", {
+    cause: template,
   });
-};
+}
