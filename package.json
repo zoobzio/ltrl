@@ -21,7 +21,8 @@
     "typecheck": "pnpm -r --stream=true --filter=./packages/** run typecheck",
     "test": "pnpm -r --stream=true --filter=./packages/** run coverage",
     "build": "pnpm -r --stream=true --filter=./packages/** run build",
-    "release": "changelogen --release && ./tools/bump.sh && git push --follow-tags"
+    "release": "changelogen --release && ./tools/bump.sh && git push --follow-tags",
+    "publish": "pnpm -r --stream=true --filter=./packages/** publish --no-git-checks"
   },
   "devDependencies": {
     "changelogen": "catalog:"
