@@ -1,8 +1,8 @@
 # `ltrl` Packages
 
-| Name        | Documentation                      | Description                                                            |
-| ----------- | ---------------------------------- | ---------------------------------------------------------------------- |
-| `ltrl`      | [README](/packages/ltrl/README.md) | The core engine that transforms JSON into type-safe literals.          |
-| `nuxt-ltrl` | [README](/packages/ltrl/README.md) | Compose globally available literals for Nuxt apps w/ additional utils. |
+| Name        | Documentation                             | Description                                             |
+| ----------- | ----------------------------------------- | ------------------------------------------------------- |
+| `ltrl`      | [`README`](/packages/ltrl/README.md)      | The core engine, converts JSON into type-safe literals. |
+| `nuxt-ltrl` | [`README`](/packages/nuxt-ltrl/README.md) | Compose global system literals for Nuxt.                |
 
 If you don't see a package available for your chosen framework, open an issue & I can see about adding support!
