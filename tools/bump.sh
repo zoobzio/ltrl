@@ -14,3 +14,4 @@ do
 done
 
 git add package.json packages/*/package.json
+git commit --amend --no-edit

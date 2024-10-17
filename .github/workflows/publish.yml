@@ -17,7 +17,7 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org/
       - uses: pnpm/action-setup@v4.0.0
-      - run: pnpm i
+      - run: pnpm i --filter="*ltrl*"
       - run: pnpm lint
       - run: pnpm test
       - run: pnpm build
