@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.6
+
+[compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.5...v0.0.6)
+
+### 🩹 Fixes
+
+- Filter build install & commit version bumps in tools ([aead579](https://github.com/zoobzio/ltrl/commit/aead579))
+
+### ❤️ Contributors
+
+- Alexander Thorwaldson ([@zoobzio](http://github.com/zoobzio))
+
 ## v0.0.5
 
 [compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.4...v0.0.5)
