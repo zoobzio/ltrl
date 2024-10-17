@@ -15,5 +15,7 @@ jobs:
       - uses: pnpm/action-setup@v4.0.0
       - run: pnpm i --filter="*ltrl*"
       - run: pnpm lint
-      - run: pnpm build
+      - run: pnpm prep
+      - run: pnpm typecheck
       - run: pnpm test
+      - run: pnpm build

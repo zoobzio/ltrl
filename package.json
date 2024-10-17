@@ -17,6 +17,7 @@
   },
   "scripts": {
     "lint": "pnpm -r --stream=true --filter=./packages/** run lint",
+    "prep": "pnpm --filter=./packages/ltrl run build",
     "typecheck": "pnpm -r --stream=true --filter=./packages/** run typecheck",
     "test": "pnpm -r --stream=true --filter=./packages/** run coverage",
     "build": "pnpm -r --stream=true --filter=./packages/** run build",
