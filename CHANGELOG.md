@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.0.5
+
+[compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.4...v0.0.5)
+
+### 🩹 Fixes
+
+- Run changelogen once & propagate version bump ([173aa1d](https://github.com/zoobzio/ltrl/commit/173aa1d))
+
+### 🏡 Chore
+
+- **release:** V0.0.4 ([06f2e68](https://github.com/zoobzio/ltrl/commit/06f2e68))
+- Update lockfile ([4416c46](https://github.com/zoobzio/ltrl/commit/4416c46))
+
+### ❤️ Contributors
+
+- Alexander Thorwaldson ([@zoobzio](http://github.com/zoobzio))
+
 ## v0.0.4
 
 [compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.3...v0.0.4)
