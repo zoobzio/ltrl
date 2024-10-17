@@ -1,6 +1,31 @@
 # Changelog
 
 
+## v0.0.11
+
+[compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.5...v0.0.11)
+
+### 🩹 Fixes
+
+- Filter build install & commit version bumps in tools ([aead579](https://github.com/zoobzio/ltrl/commit/aead579))
+- Tests & exports & rename kit ([ccf717f](https://github.com/zoobzio/ltrl/commit/ccf717f))
+- Tests depend on build, update ci pipeline ([d693d16](https://github.com/zoobzio/ltrl/commit/d693d16))
+- Prep before typecheck & tests ([4a9a042](https://github.com/zoobzio/ltrl/commit/4a9a042))
+- Publish packages not monorepo ([d765dcc](https://github.com/zoobzio/ltrl/commit/d765dcc))
+
+### 🏡 Chore
+
+- **release:** V0.0.6 ([a891a07](https://github.com/zoobzio/ltrl/commit/a891a07))
+- **release:** V0.0.7 ([d5e48cc](https://github.com/zoobzio/ltrl/commit/d5e48cc))
+- **release:** V0.0.8 ([040942b](https://github.com/zoobzio/ltrl/commit/040942b))
+- **release:** V0.0.9 ([e27f95f](https://github.com/zoobzio/ltrl/commit/e27f95f))
+- **release:** V0.0.10 ([ea6b5c0](https://github.com/zoobzio/ltrl/commit/ea6b5c0))
+- Remove changelog in nuxt-ltrl ([f4330f9](https://github.com/zoobzio/ltrl/commit/f4330f9))
+
+### ❤️ Contributors
+
+- Alexander Thorwaldson ([@zoobzio](http://github.com/zoobzio))
+
 ## v0.0.10
 
 [compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.5...v0.0.10)

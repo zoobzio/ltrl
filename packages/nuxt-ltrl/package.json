@@ -1,6 +1,6 @@
 {
   "name": "nuxt-ltrl",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "🍱 Compose literally-typed constants, tuples, enums, & more from standard JSON in Nuxt.",
   "author": "Alexander Thorwaldson <alex@zoobz.io>",
   "license": "MIT",
