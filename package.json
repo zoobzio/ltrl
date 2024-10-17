@@ -1,6 +1,6 @@
 {
   "name": "@ltrl/monorepo",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": {
     "name": "Alex Thorwaldson",
     "email": "alex@zoobz.io",
@@ -19,7 +19,10 @@
     "lint": "pnpm -r --stream=true --filter=./packages/** run lint",
     "test": "pnpm -r --stream=true --filter=./packages/** run coverage",
     "build": "pnpm -r --stream=true --filter=./packages/** run build",
-    "release": "pnpm -r --stream=true --filter=./packages/** run release"
+    "release": "changelogen --release && ./tools/bump.sh && git push --follow-tags"
+  },
+  "devDependencies": {
+    "changelogen": "catalog:"
   },
   "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c"
 }

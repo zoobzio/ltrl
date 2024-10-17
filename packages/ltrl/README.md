@@ -2,9 +2,9 @@
 
 🍱 Compose literally-typed constants, tuples, enums, & more from standard JSON.
 
-[✨ &nbsp;Release Notes](/packages/ltrl/CHANGELOG.md)
+[✨ &nbsp;Release Notes](/CHANGELOG.md)
 
-## Configuration
+## Getting started
 
 1. Install the module
 

@@ -2,7 +2,7 @@
 
 🍱 Compose system literals from JSON in Nuxt.
 
-[✨ &nbsp;Release Notes](/packages/nuxt-ltrl/CHANGELOG.md)
+[✨ &nbsp;Release Notes](/CHANGELOG.md)
 
 ## Getting started
 
