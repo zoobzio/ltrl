@@ -1,11 +1,11 @@
 import { describe, it, expect } from "vitest";
+import { ltrl } from "../src";
 import {
   isLtrlCongruent,
   isLtrlConstant,
   isLtrlEnum,
   isLtrlTuple,
-  ltrl,
-} from "../src";
+} from "../src/recipes";
 import type {
   LtrlConstantTemplate,
   LtrlTupleTemplate,
@@ -18,7 +18,7 @@ import type {
   useLtrlEnum,
   useLtrlCongruent,
   useLtrlConfig,
-} from "../src";
+} from "../src/recipes";
 import constantCases from "./case/constant";
 import tupleCases from "./case/tuple";
 import enumCases from "./case/enum";

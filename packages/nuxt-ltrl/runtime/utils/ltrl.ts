@@ -10,4 +10,5 @@ export type LtrlConfig = {
 export type LtrlKey = keyof LtrlConfig;
 export type LtrlValue<K extends LtrlKey> = LtrlConfig[K];
 
+export const useNuxtLtrlConfig = () => config;
 export const useNuxtLtrl = <K extends LtrlKey>(key: K) => config[key];

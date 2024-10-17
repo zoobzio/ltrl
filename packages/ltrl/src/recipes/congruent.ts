@@ -1,4 +1,4 @@
-import type { LtrlUnionToTuple } from "../types";
+import type { LtrlUnionToTuple } from "./types";
 import type { LtrlConstantTemplate } from "./constant";
 
 export type LtrlCongruentTemplate =

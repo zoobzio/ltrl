@@ -1,4 +1,4 @@
-import { LtrlUnionToTuple } from "../types";
+import { LtrlUnionToTuple } from "./types";
 
 export type LtrlEnumTemplate =
   | {

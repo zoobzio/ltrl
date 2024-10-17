@@ -10,6 +10,6 @@ export default createConfigForNuxt({
 }).append(prettierConfig, prettierPlugin, {
   ignores: ["**/.dist", "**/.nuxt"],
   rules: {
-    "@typescript-eslint/ban-ts-comment": "warn", // intentional in some cases
+    "@typescript-eslint/ban-ts-comment": "off", // need to ignore virtual modules in runtime
   },
 });
