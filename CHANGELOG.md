@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.0.12
+
+[compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.10...v0.0.12)
+
+### 🏡 Chore
+
+- Remove changelog in nuxt-ltrl ([f4330f9](https://github.com/zoobzio/ltrl/commit/f4330f9))
+- **release:** V0.0.11 ([bfdc7ed](https://github.com/zoobzio/ltrl/commit/bfdc7ed))
+
+### ❤️ Contributors
+
+- Alexander Thorwaldson ([@zoobzio](http://github.com/zoobzio))
+
 ## v0.0.11
 
 [compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.5...v0.0.11)
