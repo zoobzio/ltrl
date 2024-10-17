@@ -19,8 +19,8 @@ jobs:
       - uses: pnpm/action-setup@v4.0.0
       - run: pnpm i --filter="*ltrl*"
       - run: pnpm lint
-      - run: pnpm test
       - run: pnpm build
+      - run: pnpm test
       - run: pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

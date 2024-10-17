@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { nuxtLtrl } from "~/.stub/ltrl.config.mjs";
 import { defineLtrlConfig } from "../../src/config";
+
 const viDefineLtrlConfig = vi.fn(defineLtrlConfig);
 
 describe("defineLtrlConfig", () => {
