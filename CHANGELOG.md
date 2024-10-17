@@ -1,6 +1,25 @@
 # Changelog
 
 
+## v0.0.8
+
+[compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.5...v0.0.8)
+
+### 🩹 Fixes
+
+- Filter build install & commit version bumps in tools ([aead579](https://github.com/zoobzio/ltrl/commit/aead579))
+- Tests & exports & rename kit ([ccf717f](https://github.com/zoobzio/ltrl/commit/ccf717f))
+- Tests depend on build, update ci pipeline ([d693d16](https://github.com/zoobzio/ltrl/commit/d693d16))
+
+### 🏡 Chore
+
+- **release:** V0.0.6 ([a891a07](https://github.com/zoobzio/ltrl/commit/a891a07))
+- **release:** V0.0.7 ([d5e48cc](https://github.com/zoobzio/ltrl/commit/d5e48cc))
+
+### ❤️ Contributors
+
+- Alexander Thorwaldson ([@zoobzio](http://github.com/zoobzio))
+
 ## v0.0.7
 
 [compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.5...v0.0.7)
