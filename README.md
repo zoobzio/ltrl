@@ -1,10 +1,5 @@
 # ltrl
 
-[![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![Codecov][codecov-src]][codecov-href]
-[![License][license-src]][license-href]
-
 🍱 Compose literally-typed constants, tuples, enums, & more from standard JSON.
 
 [✨ &nbsp;Release Notes](/CHANGELOG.md)

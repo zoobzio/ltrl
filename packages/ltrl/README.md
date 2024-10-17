@@ -200,7 +200,7 @@ config.fruit; // a `congruent` literal
 
 Utilities will be generated automatically dependent on the type of value detected for any given property.
 
-## Future recipes
+## Future plans
 
 Thought of a useful literal that is not covered here? Open an issue & I will be happy to take a look!
 

@@ -38,12 +38,12 @@ const kit = vi.hoisted(() => {
   };
 });
 
-const ltrl = vi.hoisted(() => ({
+const ltrlKit = vi.hoisted(() => ({
   isLtrlConfig: vi.fn((config) => "example" in config),
 }));
 
 vi.mock("@nuxt/kit", () => kit);
-vi.mock("ltrl", () => ltrl);
+vi.mock("ltrl/kit", () => ltrlKit);
 
 describe("nuxt-ltrl", () => {
   ltrlModule(CONFIG, NUXT);
@@ -58,8 +58,8 @@ describe("nuxt-ltrl", () => {
   });
 
   it("checks for valid configs", () => {
-    expect(ltrl.isLtrlConfig).toHaveBeenCalledOnce();
-    expect(ltrl.isLtrlConfig).toHaveReturnedWith(true);
+    expect(ltrlKit.isLtrlConfig).toHaveBeenCalledOnce();
+    expect(ltrlKit.isLtrlConfig).toHaveReturnedWith(true);
     expect(kit.addTemplate).toHaveBeenCalledOnce();
     expect(kit.addTemplate).toHaveReturnedWith(
       [
@@ -74,8 +74,8 @@ describe("nuxt-ltrl", () => {
     vi.clearAllMocks();
     ltrlModule({ invalid: true }, NUXT);
     expect(kit.addImportsSources).toHaveBeenCalledOnce();
-    expect(ltrl.isLtrlConfig).toHaveBeenCalledOnce();
-    expect(ltrl.isLtrlConfig).toHaveReturnedWith(false);
+    expect(ltrlKit.isLtrlConfig).toHaveBeenCalledOnce();
+    expect(ltrlKit.isLtrlConfig).toHaveReturnedWith(false);
     expect(kit.addTemplate).toHaveBeenCalledTimes(0);
     expect(kit.addImportsDir).toHaveBeenCalledTimes(0);
     expect(infoLogger).toHaveBeenCalledOnce();

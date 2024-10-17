@@ -5,7 +5,7 @@ import {
   isLtrlConstant,
   isLtrlEnum,
   isLtrlTuple,
-} from "../src/recipes";
+} from "../src/kit";
 import type {
   LtrlConstantTemplate,
   LtrlTupleTemplate,
@@ -18,7 +18,7 @@ import type {
   useLtrlEnum,
   useLtrlCongruent,
   useLtrlConfig,
-} from "../src/recipes";
+} from "../src/kit";
 import constantCases from "./case/constant";
 import tupleCases from "./case/tuple";
 import enumCases from "./case/enum";

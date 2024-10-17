@@ -6,8 +6,8 @@ import {
   useLogger,
   addImportsDir,
 } from "@nuxt/kit";
-import type { LtrlConfigTemplate } from "ltrl";
-import { isLtrlConfig } from "ltrl";
+import type { LtrlConfigTemplate } from "ltrl/kit";
+import { isLtrlConfig } from "ltrl/kit";
 
 export default defineNuxtModule<LtrlConfigTemplate>({
   meta: {

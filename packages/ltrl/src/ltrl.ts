@@ -11,7 +11,7 @@ import type {
   LtrlConfigTemplate,
   LtrlConfigUtils,
   LtrlConfig,
-} from "./recipes";
+} from "./kit";
 import {
   useLtrlConstant,
   isLtrlConstant,
@@ -23,7 +23,7 @@ import {
   useLtrlCongruent,
   isLtrlConfig,
   useLtrlConfig,
-} from "./recipes";
+} from "./kit";
 
 export function ltrl<const T extends LtrlConfigTemplate>(
   template: LtrlConfig<T>,
