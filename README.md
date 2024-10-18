@@ -18,6 +18,7 @@ Define JSON configurations for:
 ## Packages
 
 - [`ltrl`](/packages/ltrl/README.md) - The core engine, converts JSON into type-safe literals
+- [`ltrl-http`](/packages/ltrl-http/README.md) - Literal HTTP status codes
 - [`nuxt-ltrl`](/packages/nuxt-ltrl/README.md) - Compose global system literals for Nuxt
 
 ## Development
@@ -26,7 +27,9 @@ Define JSON configurations for:
 
 ```sh
 pnpm i
+pnpm prep
 pnpm lint
+pnpm typecheck
 pnpm test
 ```
 
@@ -34,7 +37,9 @@ Dependencies can be added to the [`catalog`](/pnpm-workspace.yaml) & are availab
 
 ## Contributions
 
-Contributions are welcome! `ltrl` relies on [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to generate release notes, please feel free to open a PR following that specification and I will be happy to review!
+Contributions are welcome!
+
+`ltrl` relies on [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to generate release notes, please feel free to open a PR following that specification and I will be happy to review!
 
 ## License
 

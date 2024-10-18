@@ -17,19 +17,17 @@ pnpm add ltrl
 ```ts
 import { ltrl } from "ltrl";
 
-export const literals = ltrl({
-  foo: "an example string",
-  bar: ["primary", "secondary", "tertiary"],
-  baz: {
+export const foo = ltrl("an example string");
+export const bar = ltrl(["primary", "secondary", "tertiary"]);
+export baz = ltrl({
     a: "A",
     b: "B",
     c: "C"
-  },
-  qux: [
+});
+export qux = ltrl([
     { key: 1, label: "One" },
     { key: 2, label: "Two" },
-  },
-});
+]);
 ```
 
 3. You are done, literally!
@@ -154,51 +152,6 @@ fruit.resolve("oranges"); // { key: "oranges", label: "Oranges" }
 | `evalKey(key)` | Compare a string or number value to the congruent keys & cast the type if it's a valid key. |
 | `clone()`      | Clone a writeable copy of the literal value.                                                |
 | `resolve(key)` | Resolve a given key to it's corresponding congruent value literal.                          |
-
-### Config
-
-`ltrl` also supports config objects that have `string` keys & any valid `ltrl` object as a value. It will analyze the config & dynamically compose `ltrl` objects w/ in-depth typeguards.
-
-#### Usage
-
-```ts
-const config = ltrl({
-  name: "Example",
-  version: 11,
-  modes: ["prod", "test", "dev", "local"],
-  levels: {
-    trace: 0,
-    debug: 1,
-    info: 2,
-    warn: 3,
-    error: 4,
-  },
-  fruit: [
-    {
-      key: 1,
-      label: "Banana",
-    },
-    {
-      key: 2,
-      label: "Apple",
-    },
-    {
-      key: 3,
-      label: "Mango",
-    },
-  ],
-});
-
-config.name; // a `constant` literal
-config.version; // a `constant` literal
-config.modes: // a `tuple` literal
-config.levels; // an `enum` literal
-config.fruit; // a `congruent` literal
-```
-
-#### Utils
-
-Utilities will be generated automatically dependent on the type of value detected for any given property.
 
 ## Future plans
 

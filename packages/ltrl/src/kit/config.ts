@@ -21,9 +21,11 @@ export type LtrlConfigTemplate = {
 
 export type LtrlConfig<T extends LtrlConfigTemplate> = {
   [K in keyof T]: T[K] extends LtrlCongruentTemplate[]
-    ? T[K] extends [infer First]
+    ? T[K] extends [infer First, ...infer Rest]
       ? First extends LtrlCongruentTemplate
-        ? [First, ...LtrlCongruent<First>[]]
+        ? Rest extends LtrlCongruent<First>[]
+          ? [First, ...Rest]
+          : never
         : never
       : never
     : T[K];

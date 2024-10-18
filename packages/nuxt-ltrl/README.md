@@ -54,6 +54,7 @@ Define system-level JSON configurations in Nuxt for:
 [Read more](/packages/ltrl/README.md)
 
 > NOTE: system literals are not currently available within the `~/server` directory...
+>
 > You can still use the `ltrl` function to define literals available to your API endpoints.
 
 ## Utils

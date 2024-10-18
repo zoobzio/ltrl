@@ -1,5 +1,6 @@
 packages:
   - packages/ltrl
+  - packages/ltrl-http
   - packages/nuxt-ltrl
   - examples/nuxt
 catalog:

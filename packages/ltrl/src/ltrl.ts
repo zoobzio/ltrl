@@ -25,26 +25,26 @@ import {
   useLtrlConfig,
 } from "./kit";
 
-export function ltrl<const T extends LtrlConfigTemplate>(
-  template: LtrlConfig<T>,
-): LtrlConfigUtils<T>;
+export function ltrl<const T extends LtrlConstantTemplate>(
+  template: T,
+): LtrlConstantUtils<T>;
+
+export function ltrl<const T extends LtrlTupleTemplate>(
+  template: T,
+): LtrlTupleUtils<T>;
+
+export function ltrl<const T extends LtrlEnumTemplate>(
+  template: T,
+): LtrlEnumUtils<T>;
 
 export function ltrl<
   const T extends LtrlCongruentTemplate,
   const R extends LtrlCongruent<T>[],
 >(template: [T, ...R]): LtrlCongruentUtils<T, R>;
 
-export function ltrl<const T extends LtrlEnumTemplate>(
-  template: T,
-): LtrlEnumUtils<T>;
-
-export function ltrl<const T extends LtrlTupleTemplate>(
-  template: T,
-): LtrlTupleUtils<T>;
-
-export function ltrl<const T extends LtrlConstantTemplate>(
-  template: T,
-): LtrlConstantUtils<T>;
+export function ltrl<const T extends LtrlConfigTemplate>(
+  template: LtrlConfig<T>,
+): LtrlConfigUtils<T>;
 
 export function ltrl<const T>(template: T) {
   if (isLtrlConstant(template)) {
