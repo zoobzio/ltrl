@@ -20,6 +20,10 @@
     ".": {
       "types": "./.dist/module.d.ts",
       "import": "./.dist/module.mjs"
+    },
+    "./config": {
+      "types": "./.dist/config.d.ts",
+      "import": "./.dist/config.mjs"
     }
   },
   "sideEffects": false,
