@@ -4,6 +4,34 @@
 
 [✨ &nbsp;Release Notes](/CHANGELOG.md)
 
+## Getting started
+
+1. Install the module
+
+```bash
+pnpm add ltrl
+```
+
+2. Define any literal
+
+```ts
+import { ltrl } from "ltrl";
+
+export const foo = ltrl("an example string");
+export const bar = ltrl(["primary", "secondary", "tertiary"]);
+export baz = ltrl({
+    a: "A",
+    b: "B",
+    c: "C"
+});
+export qux = ltrl([
+    { key: 1, label: "One" },
+    { key: 2, label: "Two" },
+]);
+```
+
+3. You are done, literally!
+
 ## Features
 
 Define JSON configurations for:
