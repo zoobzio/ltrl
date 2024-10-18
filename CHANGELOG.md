@@ -1,6 +1,25 @@
 # Changelog
 
 
+## v0.0.13
+
+[compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.10...v0.0.13)
+
+### 🚀 Enhancements
+
+- Ltrl-http package & tweaks ([ebbf3b6](https://github.com/zoobzio/ltrl/commit/ebbf3b6))
+
+### 🏡 Chore
+
+- Remove changelog in nuxt-ltrl ([f4330f9](https://github.com/zoobzio/ltrl/commit/f4330f9))
+- **release:** V0.0.11 ([bfdc7ed](https://github.com/zoobzio/ltrl/commit/bfdc7ed))
+- **release:** V0.0.12 ([9f9dc18](https://github.com/zoobzio/ltrl/commit/9f9dc18))
+- Update package.json ([93882ba](https://github.com/zoobzio/ltrl/commit/93882ba))
+
+### ❤️ Contributors
+
+- Alexander Thorwaldson ([@zoobzio](http://github.com/zoobzio))
+
 ## v0.0.12
 
 [compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.10...v0.0.12)
