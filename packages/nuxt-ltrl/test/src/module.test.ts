@@ -1,8 +1,29 @@
+import type { Nuxt } from "@nuxt/schema";
 import { describe, it, expect, vi } from "vitest";
 import ltrlModule from "../../src/module";
-import type { Nuxt } from "@nuxt/schema";
 
-const CONFIG = { example: "example" };
+const CONFIG = {
+  constantExample: "example",
+  tupleExample: [1, 2, 3, 4],
+  enumExample: { a: "A", b: "B", c: "C" },
+  congruentExample: [
+    {
+      key: 1,
+      label: "One",
+      active: true,
+    },
+    {
+      key: 2,
+      label: "Two",
+      active: false,
+    },
+    {
+      key: 3,
+      label: "Three",
+      active: true,
+    },
+  ],
+};
 const NUXT = {} as Nuxt;
 
 const infoLogger = vi.fn();
@@ -39,7 +60,23 @@ const kit = vi.hoisted(() => {
 });
 
 const ltrlKit = vi.hoisted(() => ({
-  isLtrlConfig: vi.fn((config) => "example" in config),
+  isLtrlConfig: vi.fn((config) =>
+    Object.keys(CONFIG).every((key) => key in config),
+  ),
+  isLtrlConstant: vi.fn((config) =>
+    ["string", "number", "boolean"].includes(typeof config),
+  ),
+  isLtrlTuple: vi.fn(
+    (config) => Array.isArray(config) && config.every(ltrlKit.isLtrlConstant),
+  ),
+  isLtrlEnum: vi.fn(
+    (config) =>
+      typeof config === "object" &&
+      Object.values(config).every(ltrlKit.isLtrlConstant),
+  ),
+  isLtrlCongruent: vi.fn(
+    (config) => Array.isArray(config) && config.every(ltrlKit.isLtrlEnum),
+  ),
 }));
 
 vi.mock("@nuxt/kit", () => kit);
@@ -47,6 +84,9 @@ vi.mock("ltrl/kit", () => ltrlKit);
 
 describe("nuxt-ltrl", () => {
   ltrlModule(CONFIG, NUXT);
+
+  const { constantExample, tupleExample, enumExample, congruentExample } =
+    CONFIG;
 
   it("defines a nuxt module", () => {
     expect(kit.defineNuxtModule).toHaveBeenCalledOnce();
@@ -64,7 +104,10 @@ describe("nuxt-ltrl", () => {
     expect(kit.addTemplate).toHaveReturnedWith(
       [
         "import { defineLtrlConfig } from 'nuxt-ltrl/config';",
-        `export const nuxtLtrl = defineLtrlConfig(${JSON.stringify(CONFIG)});`,
+        `export const nuxtLtrlConstants = defineLtrlConfig(${JSON.stringify({ constantExample })});`,
+        `export const nuxtLtrlTuples = defineLtrlConfig(${JSON.stringify({ tupleExample })});`,
+        `export const nuxtLtrlEnums = defineLtrlConfig(${JSON.stringify({ enumExample })});`,
+        `export const nuxtLtrlCongruents = defineLtrlConfig(${JSON.stringify({ congruentExample })});`,
       ].join("\n"),
     );
     expect(kit.addImportsDir).toHaveBeenCalledOnce();

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 defineProps<{
-  variant: LtrlValue<"buttonVariants">[number];
+  variant: LtrlTupleItem<"buttonVariants">;
 }>();
-const label = useNuxtLtrl("buttonLabels");
+const label = useNuxtEnum("buttonLabels");
 </script>
 
 <template>

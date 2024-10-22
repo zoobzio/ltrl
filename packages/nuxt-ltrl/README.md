@@ -21,7 +21,12 @@ import { defineLtrlConfig } from "nuxt-ltrl/config";
 export default defineLtrlConfig({
   foo: "an example string",
   bar: ["primary", "secondary", "tertiary"],
-  baz: [
+  baz: {
+    a: "A",
+    b: "B",
+    c: "C",
+  },
+  qux: [
     { key: 1, label: "One" },
     { key: 2, label: "Two" },
   ],
@@ -61,10 +66,14 @@ Define system-level JSON configurations in Nuxt for:
 
 `nuxt-ltrl` exposes system literals to your Nuxt application to interact w/ your `ltrl` config:
 
-| Function              | Description                                                     |
-| --------------------- | --------------------------------------------------------------- |
-| `useNuxtLtrlConfig()` | Access the entire `ltrl` config defined in `~/nuxt.config.ts`.  |
-| `useNuxtLtrl(key)`    | Access a specific `ltrl` object by key (type helpers provided). |
+| Function                | Description                                                     |
+| ----------------------- | --------------------------------------------------------------- |
+| `useNuxtConstant(key)`  | Access a `ltrl` constant extracted from your Nuxt config.       |
+| `useNuxtTuple(key)`     | Access a `ltrl` tuple extracted from your Nuxt config.          |
+| `useNuxtEnum(key)`      | Access a `ltrl` enum extracted from your Nuxt config.           |
+| `useNuxtCongruent(key)` | Access a `ltrl` congruent extracted from your Nuxt config.      |
+| `useNuxtLtrlConfig()`   | Access the entire `ltrl` config defined in `~/nuxt.config.ts`.  |
+| `useNuxtLtrl(key)`      | Access a specific `ltrl` object by key (type helpers provided). |
 
 ### Usage
 
@@ -83,11 +92,26 @@ export function useLtrlBar() {
 
 In addition to the utilities, `nuxt-ltrl` also exposes some type helpers that can help you build powerful components:
 
-| Type                           | Description                                                                       |
-| ------------------------------ | --------------------------------------------------------------------------------- |
-| `LtrlConfig`                   | An interface that maps the `ltrl` key to the literal type of the given key.       |
-| `LtrlKey`                      | A string-literal union type containing all available keys from the `ltrl` config. |
-| `LtrlValue<K extends LtrlKey>` | Access the literal type of a given `ltrl` key.                                    |
+| Type                                            | Description                                                                                              |
+| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `LtrlConstantConfig`                            | An interface that maps `ltrl` constant keys to the literal type of the value resolved by the given key.  |
+| `LtrlTupleConfig`                               | An interface that maps `ltrl` tuple keys to the literal type of the value resolved by the given key.     |
+| `LtrlEnumConfig`                                | An interface that maps `ltrl` enum keys to the literal type of the value resolved by the given key.      |
+| `LtrlCongruentConfig`                           | An interface that maps `ltrl` congruent keys to the literal type of the value resolved by the given key. |
+| `LtrlConfig`                                    | An interface that maps the `ltrl` key to the literal type of value resolved by the given key.            |
+| `LtrlConstantKey`                               | A string-literal union type containing all available `ltrl` constant keys.                               |
+| `LtrlTupleKey`                                  | A string-literal union type containing all available `ltrl` tuple keys.                                  |
+| `LtrlEnumKey`                                   | A string-literal union type containing all available `ltrl` enum keys.                                   |
+| `LtrlCongruentKey`                              | A string-literal union type containing all available `ltrl` congruent keys.                              |
+| `LtrlKey`                                       | A string-literal union type containing all available keys from the `ltrl` config.                        |
+| `LtrlConstant<K extends LtrlConstantKey>`       | Access the literal type of a given `ltrl` constant key.                                                  |
+| `LtrlTuple<K extends LtrlTupleKey>`             | Access the literal type of a given `ltrl` tuple key.                                                     |
+| `LtrlEnum<K extends LtrlEnumKey>`               | Access the literal type of a given `ltrl` enum key.                                                      |
+| `LtrlCongruent<K extends LtrlCongruentKey>`     | Access the literal type of a given `ltrl` congruent key.                                                 |
+| `LtrlValue<K extends LtrlKey>`                  | Access the literal type of a given `ltrl` key.                                                           |
+| `LtrlTupleItem<K extends LtrlTupleKey>`         | Access a union-type representing the available options in a `ltrl` tuple.                                |
+| `LtrlEnumItem<K extends LtrlEnumKey>`           | Access a union-type representing the available options in a `ltrl` enum.                                 |
+| `LtrlCongruentItem<K extends LtrlCongruentKey>` | Access a union-type representing the available options in a `ltrl` congruent.                            |
 
 ### Usage
 
@@ -96,7 +120,7 @@ In this example, we are using the `bar` literal from our config to compose a str
 ```vue
 <script setup lang="ts">
 defineProps<{
-  variant: LtrlValue<"bar">[number];
+  variant: LtrlTupleItem<"bar">;
 }>();
 </script>
 
