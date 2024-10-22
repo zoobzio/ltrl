@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.0.15
+
+[compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.14...v0.0.15)
+
+### 🚀 Enhancements
+
+- **nuxt-ltrl:** Extract constants, tuples, enums & congruents from config ([2cae2ab](https://github.com/zoobzio/ltrl/commit/2cae2ab))
+
+### 🏡 Chore
+
+- Update readme ([6fe538b](https://github.com/zoobzio/ltrl/commit/6fe538b))
+
+### ❤️ Contributors
+
+- Alexander Thorwaldson ([@zoobzio](http://github.com/zoobzio))
+
 ## v0.0.14
 
 [compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.10...v0.0.14)
