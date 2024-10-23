@@ -12,5 +12,19 @@ export default defineNuxtConfig({
       outlined: "Outlined",
       plain: "Plain",
     },
+    buttonOptions: [
+      {
+        key: "primary",
+        label: "Primary",
+      },
+      {
+        key: "outlined",
+        label: "Outlined",
+      },
+      {
+        key: "plain",
+        label: "Plain",
+      },
+    ],
   },
 });

@@ -2,7 +2,7 @@
 defineProps<{
   variant: LtrlTupleItem<"buttonVariants">;
 }>();
-const label = useNuxtEnum("buttonLabels");
+const label = useNuxtLtrl("buttonLabels");
 </script>
 
 <template>
