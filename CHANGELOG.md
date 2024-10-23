@@ -1,6 +1,29 @@
 # Changelog
 
 
+## v0.0.16
+
+[compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.14...v0.0.16)
+
+### 🚀 Enhancements
+
+- **nuxt-ltrl:** Extract constants, tuples, enums & congruents from config ([2cae2ab](https://github.com/zoobzio/ltrl/commit/2cae2ab))
+
+### 🩹 Fixes
+
+- **nuxt-ltrl:** Typecheck ([01d424a](https://github.com/zoobzio/ltrl/commit/01d424a))
+- **nuxt-ltrl:** Types ([8a51ffd](https://github.com/zoobzio/ltrl/commit/8a51ffd))
+- **nuxt-ltrl:** Typecheck ([aa3579c](https://github.com/zoobzio/ltrl/commit/aa3579c))
+
+### 🏡 Chore
+
+- Update readme ([6fe538b](https://github.com/zoobzio/ltrl/commit/6fe538b))
+- **release:** V0.0.15 ([7d6c71e](https://github.com/zoobzio/ltrl/commit/7d6c71e))
+
+### ❤️ Contributors
+
+- Alexander Thorwaldson ([@zoobzio](http://github.com/zoobzio))
+
 ## v0.0.15
 
 [compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.14...v0.0.15)
