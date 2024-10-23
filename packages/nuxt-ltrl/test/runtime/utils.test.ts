@@ -24,6 +24,7 @@ describe("useNuxtLtrl", () => {
   it("accesses a system ltrl by key", () => {
     const keys = Object.keys(config) as (keyof typeof config)[];
     keys.forEach((key) =>
+      // @ts-expect-error proper types cannot be inferred here
       expect(useNuxtLtrl(key).value).toStrictEqual(
         CONFIG[key as keyof typeof CONFIG],
       ),
