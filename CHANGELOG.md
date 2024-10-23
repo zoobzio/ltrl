@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v0.0.17
+
+[compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.15...v0.0.17)
+
+### 🩹 Fixes
+
+- **nuxt-ltrl:** Typecheck ([01d424a](https://github.com/zoobzio/ltrl/commit/01d424a))
+- **nuxt-ltrl:** Types ([8a51ffd](https://github.com/zoobzio/ltrl/commit/8a51ffd))
+- **nuxt-ltrl:** Typecheck ([aa3579c](https://github.com/zoobzio/ltrl/commit/aa3579c))
+
+### 🏡 Chore
+
+- **release:** V0.0.16 ([fd1843f](https://github.com/zoobzio/ltrl/commit/fd1843f))
+
+### ❤️ Contributors
+
+- Alexander Thorwaldson ([@zoobzio](http://github.com/zoobzio))
+
 ## v0.0.16
 
 [compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.14...v0.0.16)
