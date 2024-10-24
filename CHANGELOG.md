@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v0.0.19
+
+[compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.17...v0.0.19)
+
+### 🚀 Enhancements
+
+- **nuxt-ltrl:** Generate types from config ([d5feb63](https://github.com/zoobzio/ltrl/commit/d5feb63))
+
+### 🩹 Fixes
+
+- **nuxt-ltrl:** Typeguards for ltrl keys ([506049b](https://github.com/zoobzio/ltrl/commit/506049b))
+
+### 🏡 Chore
+
+- **release:** V0.0.18 ([f04bcfa](https://github.com/zoobzio/ltrl/commit/f04bcfa))
+
+### ❤️ Contributors
+
+- Alexander Thorwaldson ([@zoobzio](http://github.com/zoobzio))
+
 ## v0.0.18
 
 [compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.17...v0.0.18)
