@@ -30,10 +30,12 @@ export default [
   [
     {
       key: "apple",
+      label: "Apple",
       fruit: true,
     },
     {
       key: "carrot",
+      label: "Carrot",
       fruit: false,
     },
   ],

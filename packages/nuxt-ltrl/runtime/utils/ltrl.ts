@@ -7,10 +7,14 @@ import {
 } from "#build/ltrl.config.mjs";
 import { useLtrlConfig } from "ltrl/kit";
 
+// ### Literals ###
+
 const ltrlConstants = useLtrlConfig(nuxtLtrlConstants);
 const ltrlTuples = useLtrlConfig(nuxtLtrlTuples);
 const ltrlEnums = useLtrlConfig(nuxtLtrlEnums);
 const ltrlCongruents = useLtrlConfig(nuxtLtrlCongruents);
+
+// ### Types ###
 
 type LtrlNever = "";
 
@@ -56,6 +60,8 @@ export type LtrlKey = Exclude<
 
 export type LtrlValue<K extends LtrlKey> = LtrlConfig[K];
 
+// ### Literal getters ###
+
 export const useLtrlConstant = <K extends LtrlConstantKey>(
   key: K,
 ): LtrlConstantConfig[K] => ltrlConstants[key];
@@ -78,6 +84,8 @@ export const useNuxtLtrlConfig = () => ({
   ...ltrlCongruents,
 });
 
+// ### Generic getter w/ overloads ###
+
 export function useNuxtLtrl<K extends LtrlConstantKey>(
   key: K,
 ): LtrlConstantConfig[K];
@@ -86,6 +94,7 @@ export function useNuxtLtrl<K extends LtrlEnumKey>(key: K): LtrlEnumConfig[K];
 export function useNuxtLtrl<K extends LtrlCongruentKey>(
   key: K,
 ): LtrlCongruentConfig[K];
+
 export function useNuxtLtrl<K extends LtrlKey>(key: K) {
   if (key in ltrlConstants) {
     return useLtrlConstant(key);

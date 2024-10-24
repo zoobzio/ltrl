@@ -54,26 +54,24 @@ Define system-level JSON configurations in Nuxt for:
 - `constants` Literal strings, numbers, or booleans
 - `tuples` Literal arrays of strings or numbers
 - `enums` Literal key/value object w/ string keys & string or number values
-- `congruents` Literal arrays of congruent key/value objects containing at least a `key` property
+- `congruents` Literal arrays of congruent key/value objects containing at least a `key` & `label` property
 
 [Read more](/packages/ltrl/README.md)
 
-> NOTE: system literals are not currently available within the `~/server` directory...
->
-> You can still use the `ltrl` function to define literals available to your API endpoints.
+> NOTE: system literals are not available within the `~/server` directory
 
 ## Utils
 
 `nuxt-ltrl` exposes system literals to your Nuxt application to interact w/ your `ltrl` config:
 
-| Function                | Description                                                     |
-| ----------------------- | --------------------------------------------------------------- |
-| `useNuxtConstant(key)`  | Access a `ltrl` constant extracted from your Nuxt config.       |
-| `useNuxtTuple(key)`     | Access a `ltrl` tuple extracted from your Nuxt config.          |
-| `useNuxtEnum(key)`      | Access a `ltrl` enum extracted from your Nuxt config.           |
-| `useNuxtCongruent(key)` | Access a `ltrl` congruent extracted from your Nuxt config.      |
-| `useNuxtLtrlConfig()`   | Access the entire `ltrl` config defined in `~/nuxt.config.ts`.  |
-| `useNuxtLtrl(key)`      | Access a specific `ltrl` object by key (type helpers provided). |
+| Function                | Description                                                    |
+| ----------------------- | -------------------------------------------------------------- |
+| `useNuxtConstant(key)`  | Access a `ltrl` constant extracted from your Nuxt config.      |
+| `useNuxtTuple(key)`     | Access a `ltrl` tuple extracted from your Nuxt config.         |
+| `useNuxtEnum(key)`      | Access a `ltrl` enum extracted from your Nuxt config.          |
+| `useNuxtCongruent(key)` | Access a `ltrl` congruent extracted from your Nuxt config.     |
+| `useNuxtLtrlConfig()`   | Access the entire `ltrl` config defined in `~/nuxt.config.ts`. |
+| `useNuxtLtrl(key)`      | Access a specific `ltrl` object w/ a given key.                |
 
 ### Usage
 
@@ -90,7 +88,52 @@ export function useLtrlBar() {
 
 ## Types
 
-In addition to the utilities, `nuxt-ltrl` also exposes some type helpers that can help you build powerful components:
+`nuxt-ltrl` will generate types based on your configuration that are globally available within Nuxt. A type name is derived from the `ltrl` key in PascalCase w/ a `Ltrl` prefix, the type itself will depend on the literal that was defined.
+
+### Constants
+
+Our example defines a constant literal w/ the `foo` key, which generates a [literal constant](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types):
+
+```ts
+export type LtrlFoo = "example";
+```
+
+### Tuples
+
+Our example defines a tuple literal w/ the `bar` key, which generates a [literal tuple](https://www.typescriptlang.org/docs/handbook/2/objects.html#readonly-tuple-types):
+
+```ts
+export type LtrlBar = ["primary", "secondary", "plain"];
+```
+
+### Enums
+
+Our example defines an enum literal w/ the `baz` key, which generates a [literal enum](https://www.typescriptlang.org/docs/handbook/enums.html):
+
+```ts
+export enum LtrlBaz {
+  A = "A",
+  B = "",
+}
+```
+
+### Congruents
+
+Our example defines a congruent literal w/ the `qux` key, which generates a [namespace](https://www.typescriptlang.org/docs/handbook/namespaces.html#handbook-content) containing a `Template` type & literal types for every supplied option:
+
+```ts
+export namespace LtrlQuz {
+  export type Template = { key: number; label: string };
+  export type One = { key: 1; label: "One" };
+  export type Two = { key: 2; label: "Two" };
+}
+```
+
+Option type names are derived from the `label` property.
+
+### Helpers
+
+In addition to the generated types, `nuxt-ltrl` also exposes some type helpers:
 
 | Type                                            | Description                                                                                              |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -120,7 +163,7 @@ In this example, we are using the `bar` literal from our config to compose a str
 ```vue
 <script setup lang="ts">
 defineProps<{
-  variant: LtrlTupleItem<"bar">;
+  variant: LtrlTupleItem<"bar">; // or `LtrlBar[number]`
 }>();
 </script>
 

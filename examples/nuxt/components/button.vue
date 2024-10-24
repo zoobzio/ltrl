@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import type { ButtonOptions } from '#build/types/ltrl';
+
+
 defineProps<{
-  variant: LtrlTupleItem<"buttonVariants">;
+  variant: LtrlButtonVariants[number];
 }>();
 const label = useNuxtLtrl("buttonLabels");
+const test: ButtonOptions.
 </script>
 
 <template>

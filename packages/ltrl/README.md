@@ -39,7 +39,7 @@ Define JSON configurations for:
 - `constants` Literal strings, numbers, or booleans
 - `tuples` Literal arrays of strings or numbers
 - `enums` Literal key/value object w/ string keys & string or number values
-- `congruents` Literal arrays of congruent key/value objects containing at least a `key` property
+- `congruents` Literal arrays of congruent key/value objects containing at least a `key` & `label` property
 
 Each variation of literal is readonly & comes equipped w/ fully type-safe utils to interact w/ the underlying data.
 
@@ -121,7 +121,7 @@ fruit.resolve("mangoes"); // string literal "Mangos"
 
 ### Congruentss
 
-Congruents are arrays of symmetric objects where every object contains atleast a `key` property. Typeguards are in place to help w/ definitions & prevent invalid values.
+Congruents are arrays of symmetric objects where every object contains atleast a `key` & `label` property. Typeguards are in place to help w/ definitions & prevent invalid values.
 
 #### Usage
 

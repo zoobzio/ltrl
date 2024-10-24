@@ -4,11 +4,13 @@ import type { LtrlConstantTemplate } from "./constant";
 export type LtrlCongruentTemplate =
   | ({
       key: string;
+      label: string;
     } & {
       [prop: string]: LtrlConstantTemplate;
     })
   | ({
       key: number;
+      label: string;
     } & {
       [prop: string]: LtrlConstantTemplate;
     });
@@ -69,7 +71,7 @@ export const isLtrlCongruent = <T extends LtrlCongruentTemplate>(
   value !== null &&
   Array.isArray(value) &&
   value.length > 0 &&
-  value.every((v) => typeof v === "object" && "key" in v) &&
+  value.every((v) => typeof v === "object" && "key" in v && "label" in v) &&
   (value.every((v) => typeof v.key === "number") ||
     value.every((v) => typeof v.key === "string")) &&
   value.reduce((x, y, i) => {

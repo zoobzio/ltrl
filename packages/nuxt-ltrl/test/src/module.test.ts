@@ -55,6 +55,10 @@ const kit = vi.hoisted(() => {
         getContents: () => string;
       }) => template.getContents(),
     ),
+    addTypeTemplate: vi.fn(
+      (template: { filename: string; getContents: () => string }) =>
+        template.getContents(),
+    ),
     addImportsDir: vi.fn(),
   };
 });
@@ -85,31 +89,22 @@ vi.mock("ltrl/kit", () => ltrlKit);
 describe("nuxt-ltrl", () => {
   ltrlModule(CONFIG, NUXT);
 
-  const { constantExample, tupleExample, enumExample, congruentExample } =
-    CONFIG;
-
   it("defines a nuxt module", () => {
     expect(kit.defineNuxtModule).toHaveBeenCalledOnce();
   });
 
   it("adds ltrl imports", () => {
     expect(kit.createResolver).toHaveBeenCalledOnce();
-    expect(kit.addImportsSources).toHaveBeenCalledOnce();
+    expect(kit.addImportsSources).toHaveBeenCalledTimes(2);
   });
 
   it("checks for valid configs", () => {
     expect(ltrlKit.isLtrlConfig).toHaveBeenCalledOnce();
     expect(ltrlKit.isLtrlConfig).toHaveReturnedWith(true);
     expect(kit.addTemplate).toHaveBeenCalledOnce();
-    expect(kit.addTemplate).toHaveReturnedWith(
-      [
-        "import { defineLtrlConfig } from 'nuxt-ltrl/config';",
-        `export const nuxtLtrlConstants = defineLtrlConfig(${JSON.stringify({ constantExample })});`,
-        `export const nuxtLtrlTuples = defineLtrlConfig(${JSON.stringify({ tupleExample })});`,
-        `export const nuxtLtrlEnums = defineLtrlConfig(${JSON.stringify({ enumExample })});`,
-        `export const nuxtLtrlCongruents = defineLtrlConfig(${JSON.stringify({ congruentExample })});`,
-      ].join("\n"),
-    );
+    expect(kit.addTemplate).toHaveReturned();
+    expect(kit.addTypeTemplate).toHaveBeenCalledOnce();
+    expect(kit.addTypeTemplate).toHaveReturned();
     expect(kit.addImportsDir).toHaveBeenCalledOnce();
   });
 

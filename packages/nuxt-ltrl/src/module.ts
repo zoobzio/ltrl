@@ -5,56 +5,18 @@ import {
   addImportsSources,
   useLogger,
   addImportsDir,
+  addTypeTemplate,
 } from "@nuxt/kit";
-import type {
-  LtrlConfigTemplate,
-  LtrlConstantTemplate,
-  LtrlTupleTemplate,
-  LtrlEnumTemplate,
-  LtrlCongruentTemplate,
-} from "ltrl/kit";
+import type { LtrlConfigTemplate } from "ltrl/kit";
+import { isLtrlConfig } from "ltrl/kit";
 import {
-  isLtrlConfig,
-  isLtrlCongruent,
-  isLtrlConstant,
-  isLtrlEnum,
-  isLtrlTuple,
-} from "ltrl/kit";
-
-const buildNuxtLtrl = (template: LtrlConfigTemplate) => {
-  const { constants, tuples, enums, congruents } = Object.keys(template).reduce(
-    (config, literal) => {
-      const configLiteral = template[literal];
-      if (isLtrlConstant(configLiteral)) {
-        config.constants[literal] = configLiteral;
-      } else if (isLtrlTuple(configLiteral)) {
-        config.tuples[literal] = configLiteral;
-      } else if (isLtrlEnum(configLiteral)) {
-        config.enums[literal] = configLiteral;
-      } else if (isLtrlCongruent(configLiteral)) {
-        config.congruents[literal] = configLiteral;
-      }
-      return config;
-    },
-    {
-      constants: {},
-      tuples: {},
-      enums: {},
-      congruents: {},
-    } as {
-      constants: Record<string, LtrlConstantTemplate>;
-      tuples: Record<string, LtrlTupleTemplate>;
-      enums: Record<string, LtrlEnumTemplate>;
-      congruents: Record<string, LtrlCongruentTemplate[]>;
-    },
-  );
-  return {
-    constants: JSON.stringify(constants),
-    tuples: JSON.stringify(tuples),
-    enums: JSON.stringify(enums),
-    congruents: JSON.stringify(congruents),
-  };
-};
+  defineLtrlTypegenConfig,
+  generateLtrlClassnames,
+  generateLtrlCongruentTypes,
+  generateLtrlConstantTypes,
+  generateLtrlEnumTypes,
+  generateLtrlTupleTypes,
+} from "./typegen";
 
 export default defineNuxtModule<LtrlConfigTemplate>({
   meta: {
@@ -65,25 +27,46 @@ export default defineNuxtModule<LtrlConfigTemplate>({
     const logger = useLogger();
     const { resolve } = createResolver(import.meta.url);
 
+    const { constants, tuples, enums, congruents } =
+      defineLtrlTypegenConfig(config);
+
     addImportsSources({
       from: "ltrl",
       imports: ["ltrl"] as Array<keyof typeof import("ltrl")>,
     });
 
     if (isLtrlConfig(config)) {
-      const { constants, tuples, enums, congruents } = buildNuxtLtrl(config);
-
       addTemplate({
         filename: "ltrl.config.mjs",
         write: true,
         getContents: () =>
           [
             "import { defineLtrlConfig } from 'nuxt-ltrl/config';",
-            `export const nuxtLtrlConstants = defineLtrlConfig(${constants});`,
-            `export const nuxtLtrlTuples = defineLtrlConfig(${tuples});`,
-            `export const nuxtLtrlEnums = defineLtrlConfig(${enums});`,
-            `export const nuxtLtrlCongruents = defineLtrlConfig(${congruents});`,
+            `export const nuxtLtrlConstants = defineLtrlConfig(${JSON.stringify(constants)});`,
+            `export const nuxtLtrlTuples = defineLtrlConfig(${JSON.stringify(tuples)});`,
+            `export const nuxtLtrlEnums = defineLtrlConfig(${JSON.stringify(enums)});`,
+            `export const nuxtLtrlCongruents = defineLtrlConfig(${JSON.stringify(congruents)});`,
           ].join("\n"),
+      });
+
+      addTypeTemplate({
+        filename: "types/ltrl.d.ts",
+        getContents: () => {
+          return [
+            ...generateLtrlConstantTypes(constants),
+            ...generateLtrlTupleTypes(tuples),
+            ...generateLtrlEnumTypes(enums),
+            ...generateLtrlCongruentTypes(congruents),
+          ].join("\n");
+        },
+      });
+
+      addImportsSources({
+        from: "#build/types/ltrl.d.ts",
+        type: true,
+        imports: [constants, tuples, enums, congruents].flatMap(
+          generateLtrlClassnames,
+        ),
       });
 
       addImportsDir(resolve("../runtime/utils"));

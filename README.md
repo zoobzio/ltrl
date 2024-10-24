@@ -39,7 +39,7 @@ Define JSON configurations for:
 - `constants` Literal strings, numbers, or booleans
 - `tuples` Literal arrays of strings or numbers
 - `enums` Literal key/value object w/ string keys & string or number values
-- `congruents` Literal arrays of congruent key/value objects containing at least a `key` property
+- `congruents` Literal arrays of congruent key/value objects containing at least a `key` & `label` property
 
 [Read more](/packages/ltrl/README.md)
 

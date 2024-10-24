@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["nuxt-ltrl"],
   ltrl: {
+    example: "Example",
     buttonVariants: ["primary", "outlined", "plain"],
     buttonLabels: {
       primary: "Primary",
