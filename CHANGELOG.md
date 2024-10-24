@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.18
+
+[compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.17...v0.0.18)
+
+### 🚀 Enhancements
+
+- **nuxt-ltrl:** Generate types from config ([d5feb63](https://github.com/zoobzio/ltrl/commit/d5feb63))
+
+### ❤️ Contributors
+
+- Alexander Thorwaldson ([@zoobzio](http://github.com/zoobzio))
+
 ## v0.0.17
 
 [compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.15...v0.0.17)
