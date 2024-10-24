@@ -58,7 +58,21 @@ export type LtrlKey = Exclude<
   LtrlNever
 >;
 
-export type LtrlValue<K extends LtrlKey> = LtrlConfig[K];
+export type LtrlValue<K extends LtrlKey> = LtrlConfig[K]["value"];
+
+// ### Literal typeguards ###
+
+export const isLtrlConstantKey = (item: string): item is LtrlConstantKey =>
+  item in ltrlConstants;
+
+export const isLtrlTupleKey = (item: string): item is LtrlTupleKey =>
+  item in ltrlTuples;
+
+export const isLtrlEnumKey = (item: string): item is LtrlEnumKey =>
+  item in ltrlEnums;
+
+export const isLtrlCongruentKey = (item: string): item is LtrlCongruentKey =>
+  item in ltrlCongruents;
 
 // ### Literal getters ###
 
@@ -95,17 +109,17 @@ export function useNuxtLtrl<K extends LtrlCongruentKey>(
   key: K,
 ): LtrlCongruentConfig[K];
 
-export function useNuxtLtrl<K extends LtrlKey>(key: K) {
-  if (key in ltrlConstants) {
+export function useNuxtLtrl<K extends string>(key: K) {
+  if (isLtrlConstantKey(key)) {
     return useLtrlConstant(key);
   }
-  if (key in ltrlTuples) {
+  if (isLtrlTupleKey(key)) {
     return useLtrlTuple(key);
   }
-  if (key in ltrlEnums) {
+  if (isLtrlEnumKey(key)) {
     return useLtrlEnum(key);
   }
-  if (key in ltrlCongruents) {
+  if (isLtrlCongruentKey(key)) {
     return useLtrlCongruent(key);
   }
   throw new Error("Invalid ltrl key!", {
