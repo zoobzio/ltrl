@@ -25,8 +25,8 @@ export baz = ltrl({
     c: "C"
 });
 export qux = ltrl([
-    { key: 1, label: "One" },
-    { key: 2, label: "Two" },
+    { id: 1, label: "One" },
+    { id: 2, label: "Two" },
 ]);
 ```
 
@@ -39,7 +39,7 @@ Define JSON configurations for:
 - `constants` Literal strings, numbers, or booleans
 - `tuples` Literal arrays of strings or numbers
 - `enums` Literal key/value object w/ string keys & string or number values
-- `congruents` Literal arrays of congruent key/value objects containing at least a `key` & `label` property
+- `congruents` Literal arrays of congruent key/value objects containing at least an `id` property
 
 Each variation of literal is readonly & comes equipped w/ fully type-safe utils to interact w/ the underlying data.
 
@@ -121,17 +121,17 @@ fruit.resolve("mangoes"); // string literal "Mangos"
 
 ### Congruentss
 
-Congruents are arrays of symmetric objects where every object contains atleast a `key` & `label` property. Typeguards are in place to help w/ definitions & prevent invalid values.
+Congruents are arrays of symmetric objects where every object contains atleast an `id` property. Typeguards are in place to help w/ definitions & prevent invalid values.
 
 #### Usage
 
 ```ts
 const fruit = ltrl([
   [
-    { key: "apples", label: "Apples", fruit: true },
-    { key: "bananas", label: "Bananas", fruit: true },
-    { key: "oranges", label: "Oranges", fruit: true },
-    { key: "carrots", label: "Carrots", fruit: false },
+    { id: "apples", label: "Apples", fruit: true },
+    { id: "bananas", label: "Bananas", fruit: true },
+    { id: "oranges", label: "Oranges", fruit: true },
+    { id: "carrots", label: "Carrots", fruit: false },
   ],
 ]);
 
@@ -139,7 +139,7 @@ fruit.value; // array literal
 fruit.keys; // ["apples", "bananas", "oranges", "carrots"];
 fruit.eval("Bananas"); // true, cast type
 fruit.evalKey("oranges"); // true, cast type
-fruit.resolve("oranges"); // { key: "oranges", label: "Oranges" }
+fruit.resolve("oranges"); // { id: "oranges", label: "Oranges" }
 ```
 
 #### Utils

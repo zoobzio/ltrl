@@ -35,7 +35,7 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "typecheck": "nuxi typecheck",
+    "check": "nuxi typecheck",
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "build": "unbuild ."

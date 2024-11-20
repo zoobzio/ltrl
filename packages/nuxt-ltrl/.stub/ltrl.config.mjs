@@ -29,31 +29,31 @@ export const nuxtLtrlEnums = defineLtrlConfig({
 export const nuxtLtrlCongruents = defineLtrlConfig({
   fruit: [
     {
-      key: 1,
+      id: 1,
       label: "Banana",
     },
     {
-      key: 2,
+      id: 2,
       label: "Apple",
     },
     {
-      key: 3,
+      id: 3,
       label: "Mango",
     },
   ],
   veggies: [
     {
-      key: "carrot",
+      id: "carrot",
       label: "Carrot",
       delicious: true,
     },
     {
-      key: "broccoli",
+      id: "broccoli",
       label: "Broccoli",
       delicious: true,
     },
     {
-      key: "beet",
+      id: "beet",
       label: "Beet",
       delicious: false,
     },

@@ -67,13 +67,13 @@ function testLtrlCongruent<S extends LtrlCongruentTemplate>(
 ) {
   expect(ltrlCongruent.value).toStrictEqual(template);
   expect(Object.isFrozen(ltrlCongruent.value)).toBe(true);
-  expect(ltrlCongruent.keys()).toStrictEqual(template.map((c) => c.key));
+  expect(ltrlCongruent.keys()).toStrictEqual(template.map((c) => c.id));
   ltrlCongruent.keys().forEach((k, i) => {
     expect(ltrlCongruent.eval(template[i])).toBe(true);
     expect(ltrlCongruent.resolve(k)).toStrictEqual(template[i]);
   });
   template
-    .map((c) => c.key)
+    .map((c) => c.id)
     .forEach((k) => expect(ltrlCongruent.evalKey(k)).toBe(true));
   expect(ltrlCongruent.clone()).toStrictEqual(template);
 }

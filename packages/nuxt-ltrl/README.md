@@ -27,8 +27,8 @@ export default defineLtrlConfig({
     c: "C",
   },
   qux: [
-    { key: 1, label: "One" },
-    { key: 2, label: "Two" },
+    { id: 1, label: "One" },
+    { id: 2, label: "Two" },
   ],
 });
 ```
@@ -54,7 +54,7 @@ Define system-level JSON configurations in Nuxt for:
 - `constants` Literal strings, numbers, or booleans
 - `tuples` Literal arrays of strings or numbers
 - `enums` Literal key/value object w/ string keys & string or number values
-- `congruents` Literal arrays of congruent key/value objects containing at least a `key` & `label` property
+- `congruents` Literal arrays of congruent key/value objects containing at least an `id` property
 
 [Read more](/packages/ltrl/README.md)
 
@@ -123,9 +123,9 @@ Our example defines a congruent literal w/ the `qux` key, which generates a [nam
 
 ```ts
 export namespace LtrlQuz {
-  export type Template = { key: number; label: string };
-  export type One = { key: 1; label: "One" };
-  export type Two = { key: 2; label: "Two" };
+  export type Template = { id: number; label: string };
+  export type One = { id: 1; label: "One" };
+  export type Two = { id: 2; label: "Two" };
 }
 ```
 

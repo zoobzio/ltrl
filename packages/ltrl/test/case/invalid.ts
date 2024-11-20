@@ -15,11 +15,11 @@ export default [
   ],
   [
     {
-      key: "on1",
+      id: "on1",
       label: "One",
     },
     {
-      key: 2,
+      id: 2,
       label: "two",
     },
   ],

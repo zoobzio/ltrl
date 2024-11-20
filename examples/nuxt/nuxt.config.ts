@@ -15,15 +15,15 @@ export default defineNuxtConfig({
     },
     buttonOptions: [
       {
-        key: "primary",
+        id: "primary",
         label: "Primary",
       },
       {
-        key: "outlined",
+        id: "outlined",
         label: "Outlined",
       },
       {
-        key: "plain",
+        id: "plain",
         label: "Plain",
       },
     ],

@@ -9,12 +9,12 @@ export default [
     },
     d: [
       {
-        key: "one",
+        id: "one",
         label: "One",
         icon: true,
       },
       {
-        key: "two",
+        id: "two",
         label: "Two",
         icon: false,
       },

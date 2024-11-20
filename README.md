@@ -25,8 +25,8 @@ export baz = ltrl({
     c: "C"
 });
 export qux = ltrl([
-    { key: 1, label: "One" },
-    { key: 2, label: "Two" },
+    { id: 1, label: "One" },
+    { id: 2, label: "Two" },
 ]);
 ```
 
@@ -57,7 +57,7 @@ Define JSON configurations for:
 pnpm i
 pnpm prep
 pnpm lint
-pnpm typecheck
+pnpm check
 pnpm test
 ```
 

@@ -32,7 +32,7 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "typecheck": "tsc --outDir .dist",
+    "check": "tsc --outDir .dist",
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "build": "unbuild ."

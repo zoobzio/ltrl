@@ -107,7 +107,7 @@ export function generateLtrlCongruentTypes(
         .join("; ")} };`,
       ...value.map(
         (v) =>
-          `  export type ${toPascalCase(v.label)} = { ${Object.entries(v)
+          `  export type ${toPascalCase(String(v.id))} = { ${Object.entries(v)
             .map(([k, f]) => k + ": " + (typeof f === "string" ? `"${f}"` : f))
             .join("; ")} };`,
       ),

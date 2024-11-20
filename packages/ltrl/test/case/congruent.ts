@@ -1,40 +1,40 @@
 export default [
   [
     {
-      key: "a",
+      id: "a",
       label: "A",
     },
     {
-      key: "b",
+      id: "b",
       label: "B",
     },
     {
-      key: "c",
+      id: "c",
       label: "C",
     },
   ],
   [
     {
-      key: 1,
+      id: 1,
       label: "One",
     },
     {
-      key: 2,
+      id: 2,
       label: "Two",
     },
     {
-      key: 3,
+      id: 3,
       label: "Three",
     },
   ],
   [
     {
-      key: "apple",
+      id: "apple",
       label: "Apple",
       fruit: true,
     },
     {
-      key: "carrot",
+      id: "carrot",
       label: "Carrot",
       fruit: false,
     },

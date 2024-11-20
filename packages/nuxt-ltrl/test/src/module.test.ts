@@ -8,17 +8,17 @@ const CONFIG = {
   enumExample: { a: "A", b: "B", c: "C" },
   congruentExample: [
     {
-      key: 1,
+      id: 1,
       label: "One",
       active: true,
     },
     {
-      key: 2,
+      id: 2,
       label: "Two",
       active: false,
     },
     {
-      key: 3,
+      id: 3,
       label: "Three",
       active: true,
     },
