@@ -1,6 +1,32 @@
 # Changelog
 
 
+## v0.0.23
+
+[compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.20...v0.0.23)
+
+### 🚀 Enhancements
+
+- Simplify http, reduce type complexity, and drop nuxt module ([62bc8d8](https://github.com/zoobzio/ltrl/commit/62bc8d8))
+- Extend http literals ([614542d](https://github.com/zoobzio/ltrl/commit/614542d))
+
+### 🩹 Fixes
+
+- Build target ([ee032d0](https://github.com/zoobzio/ltrl/commit/ee032d0))
+
+### 💅 Refactors
+
+- Reduce to just statuses ([a6e6153](https://github.com/zoobzio/ltrl/commit/a6e6153))
+
+### 🏡 Chore
+
+- **release:** V0.0.21 ([17a9e2c](https://github.com/zoobzio/ltrl/commit/17a9e2c))
+- **release:** V0.0.22 ([95f3ed0](https://github.com/zoobzio/ltrl/commit/95f3ed0))
+
+### ❤️ Contributors
+
+- Alexander Thorwaldson ([@zoobzio](http://github.com/zoobzio))
+
 ## v0.0.22
 
 [compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.20...v0.0.22)
