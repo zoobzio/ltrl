@@ -6,18 +6,28 @@ export type LtrlEnumTemplate =
     }
   | {
       [key: string]: number;
+    }
+  | {
+      [key: number]: string;
+    }
+  | {
+      [key: number]: number;
     };
 
 export type LtrlEnumUtils<E extends LtrlEnumTemplate> = {
   value: E;
   keys: () => LtrlUnionToTuple<keyof E>;
   eval: (key: keyof E, value: unknown) => value is E[typeof key];
-  evalKey: (key: string) => key is keyof E & string;
+  evalKey: (key: string | number) => key is keyof E & (string | number);
   clone: () => E extends { [key: string]: string }
     ? { [key: string]: string }
     : E extends { [key: string]: number }
       ? { [key: string]: number }
-      : never;
+      : E extends { [key: number]: string }
+        ? { [key: number]: string }
+        : E extends { [key: number]: number }
+          ? { [key: number]: number }
+          : never;
   resolve: <K extends keyof E>(key: K) => E[K];
 };
 
@@ -36,7 +46,8 @@ export const useLtrlEnum = <const E extends LtrlEnumTemplate>(
     value,
     keys: () => Object.keys(value) as LtrlUnionToTuple<keyof E>,
     eval: (key, val): val is (typeof value)[typeof key] => value[key] === val,
-    evalKey: (key): key is keyof typeof value & string => key in value,
+    evalKey: (key): key is keyof typeof value & (string | number) =>
+      key in value,
     clone: () => JSON.parse(JSON.stringify(value)),
     resolve: (key) => value[key],
   };

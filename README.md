@@ -47,7 +47,6 @@ Define JSON configurations for:
 
 - [`ltrl`](/packages/ltrl/README.md) - The core engine, converts JSON into type-safe literals
 - [`ltrl-http`](/packages/ltrl-http/README.md) - Literal HTTP status codes
-- [`nuxt-ltrl`](/packages/nuxt-ltrl/README.md) - Compose global system literals for Nuxt
 
 ## Development
 

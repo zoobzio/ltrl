@@ -8,9 +8,6 @@ import type {
   LtrlCongruentTemplate,
   LtrlCongruent,
   LtrlCongruentUtils,
-  LtrlConfigTemplate,
-  LtrlConfigUtils,
-  LtrlConfig,
 } from "./kit";
 import {
   useLtrlConstant,
@@ -21,8 +18,6 @@ import {
   useLtrlEnum,
   isLtrlCongruent,
   useLtrlCongruent,
-  isLtrlConfig,
-  useLtrlConfig,
 } from "./kit";
 
 export function ltrl<const T extends LtrlConstantTemplate>(
@@ -42,10 +37,6 @@ export function ltrl<
   const R extends LtrlCongruent<T>[],
 >(template: [T, ...R]): LtrlCongruentUtils<T, R>;
 
-export function ltrl<const T extends LtrlConfigTemplate>(
-  template: LtrlConfig<T>,
-): LtrlConfigUtils<T>;
-
 export function ltrl<const T>(template: T) {
   if (isLtrlConstant(template)) {
     return useLtrlConstant(template);
@@ -58,9 +49,6 @@ export function ltrl<const T>(template: T) {
   }
   if (isLtrlCongruent(template)) {
     return useLtrlCongruent(template);
-  }
-  if (isLtrlConfig(template)) {
-    return useLtrlConfig(template);
   }
   throw new Error("Invalid ltrl template!", {
     cause: template,

@@ -1,32 +1,22 @@
-import {} from "../src/codes";
-import {
-  status,
-  isHTTPCode,
-  isHTTPStatus,
-  useHTTPStatus,
-  useHTTPStatusConfig,
-} from "../src";
 import { describe, it, expect } from "vitest";
-
-const cases = [
-  "NOT_FOUND",
-  "FORBIDDEN",
-  "UNAUTHORIZED",
-  "INTERNAL_SERVER_ERROR",
-];
+import { isHTTPStatus, useHTTPStatus } from "../src";
 
 describe("http statuses", () => {
-  const config = useHTTPStatusConfig();
-  it("provides a status enum", () =>
-    Object.entries(status).every(
-      (s) => isHTTPStatus(s[0]) && isHTTPCode(s[1]),
-    ));
-  it("validates possible HTTP statuses", () =>
-    expect(cases.every(isHTTPStatus)).toBe(true));
-  it("resolves a given HTTP status", () =>
-    expect(
-      cases.filter(isHTTPStatus).map(useHTTPStatus).every(isHTTPCode),
-    ).toBe(true));
-  it("provides an HTTP status config", () =>
-    expect(config.clone()).toStrictEqual(status));
+  it("identifies valid HTTP statuses", () => {
+    expect(isHTTPStatus("OK")).toBe(true);
+    expect(isHTTPStatus("NOT_FOUND")).toBe(true);
+    expect(isHTTPStatus("INTERNAL_SERVER_ERROR")).toBe(true);
+  });
+
+  it("rejects invalid HTTP statuses", () => {
+    expect(isHTTPStatus("FAKE")).toBe(false);
+    expect(isHTTPStatus("")).toBe(false);
+  });
+
+  it("resolves a status to its code", () => {
+    expect(useHTTPStatus("OK")).toBe(200);
+    expect(useHTTPStatus("NOT_FOUND")).toBe(404);
+    expect(useHTTPStatus("INTERNAL_SERVER_ERROR")).toBe(500);
+    expect(useHTTPStatus("IM_A_TEAPOT")).toBe(418);
+  });
 });

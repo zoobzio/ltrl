@@ -1,6 +1,6 @@
 import { ltrl } from "ltrl";
 
-const statusConfig = ltrl({
+const httpStatus = ltrl({
   CONTINUE: 100,
   SWITCHING_PROTOCOLS: 101,
   PROCESSING: 102,
@@ -14,7 +14,7 @@ const statusConfig = ltrl({
   PARTIAL_CONTENT: 206,
   MULTI_STATUS: 207,
   ALREADY_REPORTED: 208,
-  THIS_IS_FINE: 218, // Apache Web Server
+  THIS_IS_FINE: 218,
   IM_USED: 226,
   MULTIPLE_CHOICES: 300,
   MOVED_PERMANENTLY: 301,
@@ -43,8 +43,8 @@ const statusConfig = ltrl({
   REQUESTED_RANGE_NOT_SATISFIABLE: 416,
   EXPECTATION_FAILED: 417,
   IM_A_TEAPOT: 418,
-  PAGE_EXPIRED: 419, // Laravel Framework
-  METHOD_FAILURE: 420, // Spring Framework
+  PAGE_EXPIRED: 419,
+  METHOD_FAILURE: 420,
   MISDIRECTED_REQUEST: 421,
   UNPROCESSABLE_ENTITY: 422,
   LOCKED: 423,
@@ -53,17 +53,17 @@ const statusConfig = ltrl({
   PRECONDITION_REQUIRED: 428,
   TOO_MANY_REQUESTS: 429,
   REQUEST_HEADER_FIELDS_TOO_LARGE: 431,
-  LOGIN_TIMEOUT: 440, // IIS
-  CONNECTION_CLOSED_WITHOUT_RESPONSE: 444, // nginx
-  RETRY_WITH: 449, // IIS
+  LOGIN_TIMEOUT: 440,
+  CONNECTION_CLOSED_WITHOUT_RESPONSE: 444,
+  RETRY_WITH: 449,
   BLOCKED_BY_WINDOWS_PARENTAL_CONTROLS: 450,
   UNAVAILABLE_FOR_LEGAL_REASONS: 451,
-  REQUEST_HEADER_TOO_LARGE: 494, // nginx
+  REQUEST_HEADER_TOO_LARGE: 494,
   SSL_CERTIFICATE_ERROR: 495,
   SSL_CERTIFICATE_REQUIRED: 496,
   HTTP_REQUEST_SENT_TO_HTTPS_PORT: 497,
-  INVALID_TOKEN: 498, // Esri
-  CLIENT_CLOSED_REQUEST: 499, // nginx
+  INVALID_TOKEN: 498,
+  CLIENT_CLOSED_REQUEST: 499,
   INTERNAL_SERVER_ERROR: 500,
   NOT_IMPLEMENTED: 501,
   BAD_GATEWAY: 502,
@@ -76,7 +76,7 @@ const statusConfig = ltrl({
   BANDWIDTH_LIMIT_EXCEEDED: 509,
   NOT_EXTENDED: 510,
   NETWORK_AUTHENTICATION_REQUIRED: 511,
-  UNKNOWN_ERROR: 520, // Cloudflare
+  UNKNOWN_ERROR: 520,
   WEB_SERVER_IS_DOWN: 521,
   CONNECTION_TIMED_OUT: 522,
   ORIGIN_IS_UNREACHABLE: 523,
@@ -88,11 +88,10 @@ const statusConfig = ltrl({
   NETWORK_READ_TIMEOUT_ERROR: 598,
 });
 
-export type HTTPStatus = keyof typeof statusConfig.value;
-export type HTTPStatusCode<K extends HTTPStatus> =
-  (typeof statusConfig.value)[K];
+export type HTTPStatus = keyof typeof httpStatus.value;
+export type HTTPStatusCode<K extends HTTPStatus> = (typeof httpStatus.value)[K];
 
-export const status = statusConfig.value;
-export const isHTTPStatus = statusConfig.evalKey;
-export const useHTTPStatus = statusConfig.resolve;
-export const useHTTPStatusConfig = () => statusConfig;
+export const status = httpStatus.value;
+export const isHTTPStatus = httpStatus.evalKey;
+export const useHTTPStatus = httpStatus.resolve;
+export const useHTTPStatusConfig = () => httpStatus;
