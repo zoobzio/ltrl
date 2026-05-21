@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.24
+
+[compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.23...v0.0.24)
+
+### 🩹 Fixes
+
+- Typehints + method enum ([738d26b](https://github.com/zoobzio/ltrl/commit/738d26b))
+
+### ❤️ Contributors
+
+- Alexander Thorwaldson ([@zoobzio](http://github.com/zoobzio))
+
 ## v0.0.23
 
 [compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.20...v0.0.23)
