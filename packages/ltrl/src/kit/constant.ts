@@ -2,7 +2,7 @@ export type LtrlConstantTemplate = string | number | boolean;
 
 export type LtrlConstantUtils<T extends LtrlConstantTemplate> = {
   value: T;
-  eval: (item: LtrlConstantTemplate) => item is T;
+  evaluate: (item: LtrlConstantTemplate) => item is T;
   clone: () => T extends string
     ? string
     : T extends number
@@ -25,7 +25,7 @@ export const useLtrlConstant = <const T extends LtrlConstantTemplate>(
   Object.freeze(value);
   return {
     value,
-    eval: (item: LtrlConstantTemplate): item is typeof value => value === item,
-    clone: () => JSON.parse(JSON.stringify(value)), // TODO is there a better way?
+    evaluate: (item: LtrlConstantTemplate): item is typeof value => value === item,
+    clone: () => JSON.parse(JSON.stringify(value)),
   };
 };

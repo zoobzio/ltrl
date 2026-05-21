@@ -49,8 +49,8 @@ export type LtrlCongruentUtils<
 > = {
   value: [S, ...R];
   keys: () => LtrlUnionToTuple<S["id"] | R[number]["id"]>;
-  eval: (val: unknown) => val is [S, ...R][number];
-  evalKey: (key: LtrlCongruentTemplate["id"]) => key is [S, ...R][number]["id"];
+  evaluate: (val: unknown) => val is [S, ...R][number];
+  identify: (key: LtrlCongruentTemplate["id"]) => key is [S, ...R][number]["id"];
   clone: () => LtrlCongruentTemplate[];
   resolve: <K extends S["id"] | R[number]["id"]>(
     key: K,
@@ -90,12 +90,12 @@ export const useLtrlCongruent = <
     value,
     keys: () =>
       value.map(({ id }) => id) as LtrlUnionToTuple<S["id"] | R[number]["id"]>,
-    eval: (item): item is (typeof value)[number] =>
+    evaluate: (item): item is (typeof value)[number] =>
       item !== null &&
       typeof item === "object" &&
       "id" in item &&
       value.findIndex((v) => v.id === item.id) >= 0,
-    evalKey: (key): key is (typeof value)[number]["id"] =>
+    identify: (key): key is (typeof value)[number]["id"] =>
       value.map(({ id }) => String(id)).includes(String(key)),
     clone: () => JSON.parse(JSON.stringify(value)),
     resolve: (key) =>

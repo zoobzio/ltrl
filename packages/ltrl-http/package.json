@@ -19,19 +19,20 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./.dist/status.d.ts",
-      "import": "./.dist/status.mjs",
-      "require": "./.dist/status.cjs"
+      "types": "./.dist/index.d.ts",
+      "import": "./.dist/index.mjs",
+      "require": "./.dist/index.cjs"
     }
   },
-  "main": ".dist/status.cjs",
-  "module": ".dist/status.mjs",
-  "types": ".dist/status.d.ts",
+  "main": ".dist/index.cjs",
+  "module": ".dist/index.mjs",
+  "types": ".dist/index.d.ts",
   "files": [
     ".dist"
   ],
   "scripts": {
     "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
     "check": "tsc --outDir .dist",
     "test": "vitest",
     "coverage": "vitest run --coverage",
