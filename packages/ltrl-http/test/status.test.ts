@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { isHTTPStatus, useHTTPStatus } from "../src";
+import { isHTTPStatus, useHTTPStatus } from "../src/status";
 
 describe("http statuses", () => {
   it("identifies valid HTTP statuses", () => {
