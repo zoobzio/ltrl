@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.21
+
+[compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.20...v0.0.21)
+
+### 🚀 Enhancements
+
+- Simplify http, reduce type complexity, and drop nuxt module ([62bc8d8](https://github.com/zoobzio/ltrl/commit/62bc8d8))
+
+### ❤️ Contributors
+
+- Alexander Thorwaldson ([@zoobzio](http://github.com/zoobzio))
+
 ## v0.0.20
 
 [compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.19...v0.0.20)
