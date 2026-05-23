@@ -452,17 +452,26 @@ const httpHeader = ltrl({
   X_XSS_PROTECTION: "X-XSS-Protection",
 });
 
+/** The frozen HTTP header enum value mapping header keys to their canonical string values. */
 export const header = httpHeader.value;
 
+/** The full HTTP header enum type. */
 export type LtrlHTTPHeader = typeof header;
 
+/** Union of all HTTP header keys (e.g. `"CONTENT_TYPE"`, `"AUTHORIZATION"`). */
 export type HTTPHeader = keyof LtrlHTTPHeader;
+/** Union of all HTTP header canonical values (e.g. `"Content-Type"`, `"Authorization"`). */
 export type HTTPHeaderValue = LtrlHTTPHeader[HTTPHeader];
 
+/** Checks whether a given key-value pair matches the HTTP header enum. */
 export const isHTTPHeader = httpHeader.evaluate;
+/** Checks whether a string is a valid HTTP header key. */
 export const isHTTPHeaderKey = httpHeader.identify;
 
+/** Resolves the canonical header value for an HTTP header key. */
 export const useHTTPHeader = httpHeader.resolve;
+/** Reverse-lookups the header key for a given canonical header value. */
 export const useHTTPHeaderLookup = httpHeader.lookup;
 
+/** Returns all HTTP headers as an array of `{ key, value }` entries. */
 export const useHTTPHeaderList = httpHeader.list;

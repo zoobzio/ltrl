@@ -56,13 +56,19 @@ const httpMethod = ltrl({
   PATCH: "PATCH",
 });
 
+/** The frozen HTTP method enum value mapping method names to their string values. */
 export const method = httpMethod.value;
 
+/** The full HTTP method enum type. */
 export type LtrlHTTPMethod = typeof method;
 
+/** Union of all HTTP method keys (e.g. `"GET"`, `"POST"`). */
 export type HTTPMethod = keyof LtrlHTTPMethod;
 
+/** Checks whether a given key-value pair matches the HTTP method enum. */
 export const isHTTPMethod = httpMethod.evaluate;
 
+/** Resolves the string value for an HTTP method name. */
 export const useHTTPMethod = httpMethod.resolve;
+/** Returns all HTTP methods as an array of `{ key, value }` entries. */
 export const useHTTPMethodList = httpMethod.list;

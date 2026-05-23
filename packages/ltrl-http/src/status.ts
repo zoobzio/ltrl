@@ -643,18 +643,28 @@ const httpStatus = ltrl({
   NETWORK_READ_TIMEOUT_ERROR: 598,
 });
 
+/** The frozen HTTP status enum value mapping status names to numeric codes. */
 export const status = httpStatus.value;
 
+/** The full HTTP status enum type. */
 export type LtrlHTTPStatus = typeof status;
 
+/** Union of all HTTP status name keys (e.g. `"OK"`, `"NOT_FOUND"`). */
 export type HTTPStatus = keyof LtrlHTTPStatus;
+/** Union of all HTTP numeric status codes (e.g. `200`, `404`). */
 export type HTTPCode = LtrlHTTPStatus[HTTPStatus];
+/** Resolves the numeric code for a specific HTTP status name. */
 export type HTTPStatusCode<K extends HTTPStatus> = LtrlHTTPStatus[K];
 
+/** Checks whether a given key-value pair matches the HTTP status enum. */
 export const isHTTPStatus = httpStatus.evaluate;
+/** Checks whether a string is a valid HTTP status name. */
 export const isHTTPCode = httpStatus.identify;
 
+/** Resolves the numeric code for an HTTP status name. */
 export const useHTTPStatus = httpStatus.resolve;
+/** Reverse-lookups the status name for a given numeric HTTP code. */
 export const useHTTPCode = httpStatus.lookup;
 
+/** Returns all HTTP statuses as an array of `{ key, value }` entries. */
 export const useHTTPStatusList = httpStatus.list;

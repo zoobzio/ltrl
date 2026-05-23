@@ -278,17 +278,26 @@ const httpMime = ltrl({
   OTF: "font/otf",
 });
 
+/** The frozen MIME type enum value mapping keys to their media type strings. */
 export const mime = httpMime.value;
 
+/** The full HTTP MIME type enum type. */
 export type LtrlHTTPMime = typeof mime;
 
+/** Union of all MIME type keys (e.g. `"JSON"`, `"HTML"`). */
 export type HTTPMime = keyof LtrlHTTPMime;
+/** Union of all MIME type values (e.g. `"application/json"`, `"text/html"`). */
 export type HTTPMimeValue = LtrlHTTPMime[HTTPMime];
 
+/** Checks whether a given key-value pair matches the MIME type enum. */
 export const isHTTPMime = httpMime.evaluate;
+/** Checks whether a string is a valid MIME type key. */
 export const isHTTPMimeKey = httpMime.identify;
 
+/** Resolves the media type string for a MIME type key. */
 export const useHTTPMime = httpMime.resolve;
+/** Reverse-lookups the MIME type key for a given media type string. */
 export const useHTTPMimeLookup = httpMime.lookup;
 
+/** Returns all MIME types as an array of `{ key, value }` entries. */
 export const useHTTPMimeList = httpMime.list;
