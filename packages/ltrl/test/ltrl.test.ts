@@ -81,6 +81,8 @@ describe("ltrl enums", () => {
     expect(Object.isFrozen(e.value)).toBe(true);
     expect(e.identify("a")).toBe(true);
     expect(e.identify("z")).toBe(false);
+    expect(e.validate("A")).toBe(true);
+    expect(e.validate("Z")).toBe(false);
     expect(e.evaluate("a", "A")).toBe(true);
     expect(e.evaluate("a", "B")).toBe(false);
     expect(e.resolve("a")).toBe("A");
@@ -92,6 +94,8 @@ describe("ltrl enums", () => {
     const e = ltrl({ one: 1, two: 2, three: 3 });
     expect(e.value).toStrictEqual({ one: 1, two: 2, three: 3 });
     expect(e.identify("one")).toBe(true);
+    expect(e.validate(1)).toBe(true);
+    expect(e.validate(99)).toBe(false);
     expect(e.evaluate("one", 1)).toBe(true);
     expect(e.evaluate("one", 2)).toBe(false);
     expect(e.resolve("two")).toBe(2);

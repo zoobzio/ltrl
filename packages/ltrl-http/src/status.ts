@@ -657,9 +657,9 @@ export type HTTPCode = LtrlHTTPStatus[HTTPStatus];
 export type HTTPStatusCode<K extends HTTPStatus> = LtrlHTTPStatus[K];
 
 /** Checks whether a given key-value pair matches the HTTP status enum. */
-export const isHTTPStatus = httpStatus.evaluate;
+export const isHTTPStatus = httpStatus.identify;
 /** Checks whether a string is a valid HTTP status name. */
-export const isHTTPCode = httpStatus.identify;
+export const isHTTPCode = httpStatus.validate;
 
 /** Resolves the numeric code for an HTTP status name. */
 export const useHTTPStatus = httpStatus.resolve;

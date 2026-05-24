@@ -22,6 +22,8 @@ export type LtrlEnumUtils<E extends LtrlEnumTemplate> = {
   evaluate: (key: keyof E, value: unknown) => value is E[typeof key];
   /** Type-narrowing predicate that checks if a string is a valid enum key. */
   identify: (key: string) => key is keyof E & string;
+  /** Type-narrowing predicate that checks if an uknown object  is a valid enum value. */
+  validate: (value: unknown) => value is E[keyof E];
   /** Returns a deep-cloned copy of the enum with its base record type. */
   clone: () => E extends { [key: string]: string }
     ? { [key: string]: string }
@@ -84,6 +86,8 @@ export const useLtrlEnum = <const E extends LtrlEnumTemplate>(
     evaluate: (key, val): val is (typeof value)[typeof key] =>
       value[key] === val,
     identify: (key): key is keyof typeof value & string => key in value,
+    validate: (val): val is E[keyof E] =>
+      Object.values(value).find((v) => v === val) != undefined,
     clone: () => JSON.parse(JSON.stringify(value)),
     resolve: (key) => value[key],
     lookup: ((val) =>

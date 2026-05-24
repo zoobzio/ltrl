@@ -9,18 +9,22 @@ import {
 } from "../src";
 
 describe("http statuses", () => {
-  it("identifies valid HTTP statuses", () => {
-    expect(isHTTPStatus("OK", 200)).toBe(true);
-    expect(isHTTPStatus("NOT_FOUND", 404)).toBe(true);
-    expect(isHTTPStatus("OK", 999)).toBe(false);
+  it("identifies valid HTTP status keys", () => {
+    expect(isHTTPStatus("OK")).toBe(true);
+    expect(isHTTPStatus("NOT_FOUND")).toBe(true);
+    expect(isHTTPStatus("INTERNAL_SERVER_ERROR")).toBe(true);
+    expect(isHTTPStatus("FAKE")).toBe(false);
+    expect(isHTTPStatus("")).toBe(false);
   });
 
-  it("identifies valid HTTP status keys", () => {
-    expect(isHTTPCode("OK")).toBe(true);
-    expect(isHTTPCode("NOT_FOUND")).toBe(true);
-    expect(isHTTPCode("INTERNAL_SERVER_ERROR")).toBe(true);
-    expect(isHTTPCode("FAKE")).toBe(false);
-    expect(isHTTPCode("")).toBe(false);
+  it("validates valid HTTP status codes", () => {
+    expect(isHTTPCode(200)).toBe(true);
+    expect(isHTTPCode(404)).toBe(true);
+    expect(isHTTPCode(500)).toBe(true);
+    expect(isHTTPCode(418)).toBe(true);
+    expect(isHTTPCode(999)).toBe(false);
+    expect(isHTTPCode(0)).toBe(false);
+    expect(isHTTPCode("OK")).toBe(false);
   });
 
   it("resolves a status to its code", () => {
