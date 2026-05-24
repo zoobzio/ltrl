@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.0.25
+
+[compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.24...v0.0.25)
+
+### 🚀 Enhancements
+
+- Enum validate values ([e12dba2](https://github.com/zoobzio/ltrl/commit/e12dba2))
+
+### 🏡 Chore
+
+- JSDoc comments ([24eb8e2](https://github.com/zoobzio/ltrl/commit/24eb8e2))
+
+### ❤️ Contributors
+
+- Alexander Thorwaldson ([@zoobzio](http://github.com/zoobzio))
+
 ## v0.0.24
 
 [compare changes](https://github.com/zoobzio/ltrl/compare/v0.0.23...v0.0.24)
